@@ -1,0 +1,23 @@
+.header-title {
+    font-family: 'Montserrat', 'Open Sans';
+    margin: 1.2%;
+}
+
+.main-text {
+    font-family: 'Open Sans';
+    margin: 1.5%;
+}
+
+.small-text {
+    font-size: x-small;
+}
+
+.smaller-carousel {
+    max-height: 450px;
+    margin: auto;
+}
+
+.smaller-carousel .carousel-inner img {
+    object-fit: cover;
+    height: 450px;
+}
