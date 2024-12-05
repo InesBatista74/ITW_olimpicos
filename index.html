@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - Olympics - HomePage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="myCSS.css" />
+    <link rel="shortcut icon" type="img/png" href="images/favicon-96x96.png" />
+    <style>
+        .carousel {
+            width: 100%;
+            margin-top: 0px;
+        }
+
+        .carousel-item {
+            z-index: -100;
+            height: 600px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .carousel-item:nth-child(1) {
+            background-image: url("images/banner1.png")
+        }
+
+        .carousel-item:nth-child(2) {
+            background-image: url('images/beijing.png');
+        }
+
+        .carousel-item:nth-child(3) {
+            background-image: url('images/athens 1896.png');
+        }
+
+        .carousel-item:nth-child(4) {
+            background-image: url('images/paris.png');
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="images/Olympic_rings.svg"
+                    height="25" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html" id="athcolor"><i
+                                class="fa fa-user text-primary"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"
+                            id="compcolor"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"
+                            id="countrycolor"><i class=" fa fa-flag"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html" id="gamecolor"><i
+                                class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html" id="modcolor"><i
+                                class="fa fa-soccer-ball-o text-danger"></i> Modalities</a></li>
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bars"></i> More
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" style="color:dimgray" href="history.html">
+                                <i class="fa fa-book " aria-hidden="true"></i> History
+                            </a>
+                            <a class="dropdown-item text" style="color:dimgray" href="shop.html">
+                                <i class="fa fa-shopping-cart " aria-hidden="true"></i> Shop
+                            </a>
+                            <a class="dropdown-item text-danger" href="liveEvents.html">
+                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Live events
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="nav-item "><a class="nav-link" aria-current="page"><input class="form-control" type="text"
+                            placeholder="Search" aria-label="Search" style="width:90%" id="procura" name="procura"
+                            autocomplete="off">&nbsp</a></div>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="favourites.html"><i
+                            class="fa fa-heart text-danger me-3"></i>&nbsp</a></div>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="statistics.html"><i
+                            class="fa fa-bar-chart text-primary me-3"></i>&nbsp</a></div>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="aboutUs.html"><i
+                            class="fa fa-info-circle text-dark"></i> About us</a></div>
+            </div>
+        </div>
+    </nav>
+    <!-- Working Area -->
+    <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
+                aria-current="true"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1 fw-bold">Welcome to the Olympics!</div>
+                    <p class="rounded bg-opacity-10 text-bg-dark"  style="padding:10px">This is the (non) official Olympics website. Here you
+                        can check all the athletes, modalities, countries, previous editions and future events!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1 fw-bold rounded-3 text-bg-light bg-opacity-10 text-light">Beijing 2022</div>
+                    <p class="rounded-3 bg-opacity-50 text-bg-dark"  style="padding:10px">The 2022 Winter Olympics, officially called the XXIV
+                        Olympic Winter Games and commonly known as Beijing 2022, was an international winter multi-sport
+                        event held from 4 to 20 February 2022 in Beijing, China, and surrounding areas with competition
+                        in selected events beginning 2 February 2022.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1 fw-bold">Athens 1896</div>
+                    <p class="rounded-3 bg-opacity-25 text-bg-dark"  style="padding:10px"">The 1896 Summer Olympics, officially known as the
+                        Games of the I Olympiad and commonly known as Athens 1896, was the first international Olympic
+                        Games held in modern history. Organised by the International Olympic Committee, which had been
+                        created by French aristocrat Pierre de Coubertin, it was held in Athens, Greece, from 6 to 15
+                        April 1896.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="display-1 fw-bold">Paris 2024 </div>
+                    <p class="rounded bg-opacity-50 text-bg-dark" style="padding:10px">The 2024 Summer Olympics, officially the Games of the
+                        XXXIII Olympiad and also known as Paris 2024, is an upcoming international multi-sport event
+                        that is scheduled to take place from 26 July to 11 August 2024 with Paris as its main host city
+                        and 16 cities spread across Metropolitan France.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container my-xs-4">
+        <h1 class="text-start mb-3 fw-bolder">Latest news </h1>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 1.png.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Marta Bassino wins giant slalom</h5>
+                        <p class="card-text">The Italian beat some of the world's top skiers finishing ahead of
+                            defending Olympic champions Sara Hector and Petra Vlhová in second and third place
+                            respectively.</p>
+                        <a href="https://olympics.com/en/news/marta-bassino-wins-giant-slalom-at-sestriere-world-cup"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 2.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">World champion Sakamoto Kaori vaults ahead at Grand Prix Final</h5>
+                        <p class="card-text">It was a shining day for Team Japan in Turin, with Sakamoto leading the
+                            women and Mihara Mai in second.</p>
+                        <a href="https://olympics.com/en/news/world-champion-sakamoto-kaori-grand-prix-final-japanese-miura-kihara"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 3.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Alpine skiing: Marco Odermatt dominates giant slalom in Val d’Isere</h5>
+                        <p class="card-text">The Olympic champion in giant slalom further cemented his place at the top
+                            of the overall World Cup standings with his win in France.</p>
+                        <a href="https://olympics.com/en/news/marco-odermatt-dominates-giant-slalom-in-val-d-isere"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 4.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Mihara Mai storms to Grand Prix Final win on debut, capping trio of GP
+                            golds this season</h5>
+                        <p class="card-text">The 23-year-old won both of her Grand Prix stops prior to the final. World
+                            champion Sakamoto Kaori sunk to fifth.</p>
+                        <a href="https://olympics.com/en/news/mihara-mai-storms-grand-prix-final-win-debut-figure-skating-japan"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 5.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">France at FIFA World Cup 2022: Stats and records</h5>
+                        <p class="card-text">Discover all the FIFA World Cup 2022 statistics, records, milestones and
+                            numbers for defending champions France, featuring star football players Kylian Mbappe, Hugo
+                            Lloris and more.</p>
+                        <a href="https://olympics.com/en/news/france-fifa-world-cup-2022-records-and-stats"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="images/news 6.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Women's FIH Nations Cup 2022: India start campaign with a 3-1 win over
+                            Chile</h5>
+                        <p class="card-text">Sangita Kumari, Sonika and Navneet Kaur scored India’s goals. They will
+                            play Asian champions Japan in their second Pool B match on Monday.</p>
+                        <a href="https://olympics.com/en/news/women-fih-nations-cup-2022-india-vs-chile-match-results"
+                            class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- End of Working Area -->
+    <nav class="navbar navbar-light bg-light" id="footer">
+        <div class="container small">
+            <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
+            <div class="navbar-text">Made with <i class="fa fa-heart text-danger"></i> for <a href="mailto: jsp@ua.pt"
+                    class="text-decoration-none text-muted">JSP</a><a href="aboutUs.html"
+                    class="text-decoration-none text-muted"> by Abel Teixeira and Raquel Vinagre.</a></div>
+            <div class="navbar-nav">
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"
+        integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+    <script src="myScript.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            const api_url = "http://192.168.160.58/Olympics/api/Utils/Search";
+
+            $("#procura").autocomplete({
+                minLength: 2,
+                source: function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: api_url,
+                        data: {
+                            q: $('#procura').val().toLowerCase()
+                        },
+                        success: function (data) {
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'Sem resultados',
+                                    value: response.term,
+                                }];
+                                response(result);
+                            } else {
+                                var nData = $.map(data.slice(0, 10), function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Id,
+                                        source: value.TableName,
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results);
+                            }
+                            console.log(data)
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $("#procura").val(ui.item.source);
+
+                    switch (ui.item.source) {
+                        case "Athletes":
+                            window.location.href = "./athleteDetails.html?id=" + ui.item.value;
+                            break;
+                        case "Competitions":
+                            window.location.href = "./competitionDetails.html?id=" + ui.item.value;
+                            break;
+                        case "Countries":
+                            window.location.href = "./countryDetails.html?id=" + ui.item.value;
+                            break;
+                        case "Games":
+                            window.location.href = "./gameDetails.html?id=" + ui.item.value;
+                            break;
+                        case "Modalities":
+                            window.location.href = "./modalityDetails.html?id=" + ui.item.value;
+                            break;
+                        default:
+                            break;
+                    }
+
+                },
+                focus: function (event, ui) {
+                    $("#procura").val(ui.item.label);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

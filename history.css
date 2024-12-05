@@ -1,0 +1,5 @@
+h2 {margin-bottom: 0.5em;}
+.title {text-align: center;}
+.title p{color:brown; font-size: 1.3em; letter-spacing: 2px;}
+.timerline {margin: 5em auto; max-width: 34.15em;}
+.checkpoint {max-width: 34em; padding-top: 2em; padding-bottom: 2em; position: relative;}
