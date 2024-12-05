@@ -13,11 +13,11 @@
 }
 
 .smaller-carousel {
-    max-height: 450px;
+    max-height: 550px;
     margin: auto;
 }
 
 .smaller-carousel .carousel-inner img {
     object-fit: cover;
-    height: 450px;
+    height: 550px;
 }
