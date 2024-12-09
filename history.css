@@ -1,5 +1,65 @@
-h2 {margin-bottom: 0.5em;}
-.title {text-align: center;}
-.title p{color:brown; font-size: 1.3em; letter-spacing: 2px;}
-.timerline {margin: 5em auto; max-width: 34.15em;}
-.checkpoint {max-width: 34em; padding-top: 2em; padding-bottom: 2em; position: relative;}
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100px; /* Largura fixa para centralizar os pontos */
+    height: 500px; /* Altura para a linha do tempo */
+    margin: 0 auto; /* Centraliza o contêiner da linha do tempo horizontalmente */
+}
+
+/* Estilo para a linha azul central */
+.timeline-line {
+    width: 4px; /* Largura da linha */
+    height: 100%; /* Altura da linha acompanha a do contêiner .timeline */
+    background-color: #add8e6; /* Azul claro */
+    position: absolute;
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Centraliza a linha ao longo do eixo X */
+}
+
+/* Estilo para os pontos da linha do tempo */
+.timeline-point {
+    width: 20px; /* Tamanho padrão da bolinha */
+    height: 20px;
+    background-color: #0056b3; /* Azul mais escuro */
+    border-radius: 50%; /* Forma circular */
+    position: absolute; /* Posiciona ao longo da linha */
+    left: 50%; /* Centraliza horizontalmente sobre a linha */
+    transform: translate(-50%, -50%); /* Centraliza o ponto */
+    z-index: 1; /* Para garantir que aparece sobre a linha */
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+/* Efeito hover para aumentar o tamanho */
+.timeline-point:hover {
+    width: 40px; /* Aumenta o tamanho ao passar o mouse */
+    height: 40px;
+    transform: translate(-50%, -50%) scale(1.2); /* Centraliza e aplica um leve zoom */
+}
+
+.timeline-balloon {
+    position: absolute;
+    bottom: 30px; /* Posiciona o balão acima da bolinha */
+    left: 50%; /* Centraliza o balão em relação à bolinha */
+    transform: translateX(-50%); /* Ajusta para que fique exatamente centralizado */
+    background-color: #333; /* Cor de fundo do balão */
+    color: white; /* Cor do texto */
+    padding: 8px 15px;
+    border-radius: 8px;
+    width: 150px; /* Largura do balão */
+    text-align: center; /* Texto centralizado */
+    visibility: hidden; /* Oculta o balão por padrão */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Quando o mouse passa sobre a bolinha */
+.timeline-point:hover + .timeline-balloon {
+    visibility: visible; /* Torna o balão visível */
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px); /* Levanta o balão */
+    font-size: 16px; /* Aumenta o tamanho da fonte no hover */
+    width: 200px; /* Aumenta o tamanho do balão */
+}
