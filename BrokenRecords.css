@@ -1,0 +1,58 @@
+.card {
+    position: relative; /* Necessário para posicionar o pseudo-elemento */
+    overflow: hidden;   /* Evitar que a borda se projete para fora */
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(120deg, #888, #ccc, #888);
+    z-index: 1;
+    border-radius: 8px;
+    opacity: 0; /* Invisível inicialmente */
+    transition: opacity 0.4s ease-in-out;
+    background-size: 300% 300%; /* Para a animação de gradiente */
+    animation: gradient-border 2s linear infinite; /* Animação do gradiente */
+}
+
+.card:hover::before {
+    opacity: 1; /* Torna visível quando em hover */
+}
+
+.card img, .card-body {
+    position: relative;
+    z-index: 2; /* Garantir que o conteúdo fique acima da borda animada */
+}
+
+@keyframes gradient-border {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .navbar-brand img {
+        height: 30px; /* Reduzir o tamanho do logotipo */
+    }
+}
+
