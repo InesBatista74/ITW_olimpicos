@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athletes - Paris 2024</title>
+    <title>Competitions - Paris 2024</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
+
 <body>
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -61,25 +63,25 @@
         </div>
     </nav>
 
-
+    <!--WORKING HERE-->
 
     <div class="container">
         <div class="border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
         </div>
-        <!-- ko if:athletes().length > 0 -->
+        <!-- ko if:competitions().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Competitions: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                     <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
@@ -88,15 +90,15 @@
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
                     <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './athletes.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a>
+                            data-bind="attr: { href: './competitions.html?page=' + $data + '&pagesize=' + $parent.pagesize(), title:'Goto Page ' + $data }, text:$data"></a>
                     </li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                     <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + nextPage(), rel:'next' }">→</a></li>
                     <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -108,45 +110,31 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Birth Date</th>
-                    <th scope="col">Birth Place</th>
-                    <th scope="col">Sex</th>
+                    <th scope="col">Tag</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: athletes">
+            <tbody data-bind="foreach: competitions">
                 <tr>
-                    <td class="align-middle" data-bind="text:Id"></td>
+                    <td class="align-middle" data-bind="text:SportId"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:BirthDate"></td>
-                    <td class="align-middle" data-bind="text:BirthPlace"></td>
-                    <td class="align-middle" data-bind="text:Sex"></td>
+                    <td class="align-middle" data-bind="text:Tag"></td>
                     <td class="text-end">
                         <a class="btn btn-default btn-light btn-xs"
-                            data-bind="attr: { href:'./athleteDetails.html?id=' + Id }"><i class="fa fa-eye"
+                            data-bind="attr: { href:'./athleteDetails.html?id=' + SportId }"><i class="fa fa-eye"
                                 title="Show details"></i></a>
                         <button class="btn btn-default btn-xs"><i class="fa fa-heart-o"
-                                data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+                                data-bind="attr : { 'id': 'favourite_' + SportId }" title="Add to favorites"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title centered" id="exampleModalLabel">
-                        <img src="HomePageCarouselImgs/Paris2024Logo.png" height="30" /> Fetching athlete data, please wait...
-                    </h5>
-                </div>
-                <div class="modal-body text-center">
-                    <i class="fa fa-spin fa-3x fa-refresh"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+    <!--NO LONGER WORKING HERE-->
 
 
 
@@ -168,12 +156,13 @@
         </div>
     </nav>
 
-    <!--JS for bootstrap-->
+    <!--JS for Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--other important shtuff-->   
+    <!--KnockoutJS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!--JS script for athletes.html-->
-    <script src="athletes.js"></script>
+    <!--JS script for competitions-->
+    <script src="competitions.js"></script>
 </body>
 </html>
