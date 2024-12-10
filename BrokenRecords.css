@@ -34,6 +34,13 @@
     z-index: 2; /* Garantir que o conteúdo fique acima da borda animada */
 }
 
+.card img {
+    height: 200px; /* Define a altura das imagens */
+    width: 100%; /* Faz as imagens preencherem a largura do card */
+    object-fit: cover; /* Ajusta as imagens sem distorção */
+}
+
+
 @keyframes gradient-border {
     0% {
         background-position: 0% 50%;
