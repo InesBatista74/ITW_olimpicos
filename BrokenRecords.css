@@ -4,6 +4,12 @@
     transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
 }
 
+.row {
+    display: flex;
+    align-items: stretch; /* Faz com que todas as cartas tenham a mesma altura */
+  }
+  
+
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -28,6 +34,12 @@
 .card:hover::before {
     opacity: 1; /* Torna visível quando em hover */
 }
+
+.card-title {
+    font-weight: normal; /* Remove o negrito */
+    color: inherit;      /* Mantém a cor padrão */
+}
+
 
 .card img, .card-body {
     position: relative;
