@@ -12,12 +12,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        /* Estilos para a linha do tempo */
+        .timeline-container {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 20px 0;
+            padding: 20px 0;
+            border-top: 2px solid #ccc;
+        }
+
+        .event {
+            position: relative;
+            background: #fff;
+            border: 2px solid #007BFF;
+            color: #007BFF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .event:hover {
+            transform: scale(1.2);
+            background: #007BFF;
+            color: #fff;
+        }
+
+        .event::after {
+            content: attr(data-year);
+            position: absolute;
+            top: 70px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .details {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .details h2 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="Logotipo.png"
-                    height="37" /></a>
+            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="Logotipo.png" height="37" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -63,12 +120,26 @@
     </nav>
     <div class="container my-4">
         <h2 class="text">History of the Olympic Games</h2>
+        <!-- Linha do tempo -->
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="event" data-year="1896">1896</div>
+                <div class="event" data-year="1924">1924</div>
+                <div class="event" data-year="1964">1964</div>
+                <div class="event" data-year="2004">2004</div>
+                <div class="event" data-year="2024">2024</div>
+            </div>
+            <div id="event-details" class="details">
+                <h2>Detalhes do Evento</h2>
+                <p>Selecione um ponto na linha do tempo para mais informações.</p>
+            </div>
+        </div>
     </div>
     <nav class="navbar navbar-light bg-light" id="footer">
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
             <div class="navbar-text d-flex align-items-center">
-                &copy; Projeto ITW - Inês Batista/Guilherme Martins
+                &copy; Projeto ITW - <a href="about_us.html" class="nav-link">Inês Batista/Guilherme Martins</a>
                 <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
                     <i class="fa-brands fa-github" style="color: black;"></i>
                 </a>
@@ -82,6 +153,26 @@
             </div>
         </div>
     </nav>
+    <script>
+        const details = {
+            1896: "Os primeiros Jogos Olímpicos modernos foram realizados em Atenas, Grécia. 14 países participaram.",
+            1924: "Os primeiros Jogos Olímpicos de Inverno foram realizados em Chamonix, França.",
+            1964: "Tóquio foi a primeira cidade da Ásia a sediar os Jogos Olímpicos.",
+            2004: "Atenas voltou a sediar os Jogos, marcando o retorno às suas origens.",
+            2024: "Paris sediará os Jogos Olímpicos pela terceira vez, após 1900 e 1924."
+        };
+
+        document.querySelectorAll('.event').forEach(event => {
+            event.addEventListener('click', () => {
+                const year = event.getAttribute('data-year');
+                const eventDetails = document.getElementById('event-details');
+                eventDetails.innerHTML = `
+                    <h2>${year}</h2>
+                    <p>${details[year]}</p>
+                `;
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
