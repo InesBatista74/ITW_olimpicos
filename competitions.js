@@ -1,19 +1,19 @@
-﻿// ViewModel KnockOut
+// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel has been initiated.');
     // local vars (set as ko observables)
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
-    self.displayName = 'Paris2024 Athletes List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/Competitions');
+    self.displayName = 'Paris2024 Competitions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.athletes = ko.observableArray([]);
+    self.competitions = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(50);
+    self.totalRecords = ko.observable(329);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-    
+
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -45,18 +45,18 @@ var vm = function () {
 
     // page events
     self.activate = function (id) {
-        console.log('CALL: getAthletes...');
+        console.log('CALL: getCompetitions...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.athletes(data.Athletes);
+            self.competitions(data.Competitions);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalAhletes);
+            self.totalRecords(data.TotalCompetitions);
         });
     };
 
