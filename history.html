@@ -11,70 +11,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
     <link rel="stylesheet" href="stylesheet.css">
-    <style>
-        /* Estilos para a linha do tempo */
-        .timeline-container {
-            text-align: center;
-            margin: 40px auto;
-            max-width: 800px;
-        }
-
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin: 20px 0;
-            padding: 20px 0;
-            border-top: 2px solid #ccc;
-        }
-
-        .event {
-            position: relative;
-            background: #fff;
-            border: 2px solid #007BFF;
-            color: #007BFF;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .event:hover {
-            transform: scale(1.2);
-            background: #007BFF;
-            color: #fff;
-        }
-
-        .event::after {
-            content: attr(data-year);
-            position: absolute;
-            top: 70px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .details {
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .details h2 {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="Logotipo.png" height="37" /></a>
+            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png" height="37" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -139,7 +82,7 @@
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
             <div class="navbar-text d-flex align-items-center">
-                &copy; Projeto ITW - <a href="about_us.html" class="nav-link">Inês Batista/Guilherme Martins</a>
+                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
                 <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
                     <i class="fa-brands fa-github" style="color: black;"></i>
                 </a>

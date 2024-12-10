@@ -39,15 +39,15 @@
 }
 
 .carousel-item:nth-child(1) {
-    background-image: url("HomePageCarouselImgs/Featured-9-8.png")
+    background-image: url("images/HomePageCarouselImgs/Featured-9-8.png")
 }
 
 .carousel-item:nth-child(2) {
-    background-image: url('HomePageCarouselImgs/portugal.avif');
+    background-image: url('images/HomePageCarouselImgs/portugal.avif');
 }
 
 .carousel-item:nth-child(3) {
-    background-image: url('HomePageCarouselImgs/torre.jpg');
+    background-image: url('images/HomePageCarouselImgs/torre.jpg');
 }
 
 .welcome-text {
