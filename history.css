@@ -1,7 +1,56 @@
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+/* Estilos para a linha do tempo */
+.timeline-container {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 2px solid #ccc;
+}
+
+.event {
+    position: relative;
+    background: #fff;
+    border: 2px solid #007BFF;
+    color: #007BFF;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.event:hover {
+    transform: scale(1.2);
+    background: #007BFF;
+    color: #fff;
+}
+
+.event::after {
+    content: attr(data-year);
+    position: absolute;
+    top: 70px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.details {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.details h2 {
+    margin-bottom: 10px;
 }
