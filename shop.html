@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png" height="37" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html" id="athcolor"><i
+                                class="fa fa-user text-primary"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html" id="compcolor"><i
+                                class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html" id="countrycolor"><i
+                                class=" fa fa-flag" style="color: pink;"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html" id="gamecolor"><i
+                                class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="sports.html" id="modcolor"><i
+                                class="fa-solid fa-football" style="color: orange;"></i> Sports</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="tocha_olímpica.html" id="modcolor"><i class="fa-solid fa-location-pin" style="color: red;"></i> Tocha Olímpica</a></li>
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bars"></i> More
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" style="color:dimgray" href="history.html">
+                                <i class="fa-solid fa-landmark"></i> History
+                            </a>
+                            <a class="dropdown-item" style="color: dimgray" href="BrokenRecords.html">
+                                <i class="fa-solid fa-puzzle-piece"></i> Broken records
+                            </a>
+                            <a class="dropdown-item text-danger" href="liveEvents.html">
+                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Live events
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="favourites.html"><i
+                            class="fa fa-heart text-danger me-3"></i>&nbsp</a></div>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="statistics.html"><i
+                     class="fa-solid fa-chart-column text-primary me-3"></i></i>&nbsp</a></div>
+                <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
+                     class="fa-solid fa-shop"></i>&nbsp</a></div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <form class="mb-4">
+            <h2 class="text-start mb-3 text-dark fs-2 fw-normal">Olympic Games Shop</h2><hr>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-1 offset-6 text-right">
+                    <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-1 text-right">
+                    <span class="form-control" id="quantidades"
+                          title="Quantidade total de produtos">0</span>
+                </div>
+                <div class="col-md-2 text-right">
+                    <span class="form-control" id="total"
+                          title="Preço total da compra">0.00</span>
+                </div>
+                <div class="col-md-2 text-right">
+                    <a href="payment.html" onclick="return valid()" class="btn btn-primary">Buy</a>
+                    <button type="button" onclick="clean()" class="btn btn-secondary" title="Limpar carrinho">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/paris-2024-olympics-pop-out-logo-graphic-t-shirt-navy-womens_ss5_p-201327597+pv-1+u-uheyp9cjogoeqhzoft0m+v-utkmanxr9cwg9a6ih74j.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty1" name="qty1" value="0" />
+                    <h5>Paris 2024 Olympics Pop Out Logo Graphic   T-Shirt - Navy - Womens<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price1" name="price1" value="34.00"
+                               class="text-danger text-right border-0" readonly> 34.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(1)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/estojo.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty2" name="qty2" value="0" />
+                    <h5>The Olympic Collection Pencil Case - Picto Blue<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price2" name="price2" value="35.00"
+                               class="text-danger text-right border-0" readonly> 35.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(2)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/the-heritage-collection-paris-1924-polo-by-lacoste-cream_ss5_p-200677637+pv-1+u-grsluy54p4w5kgxt8wgr+v-fp8usmlqqo9rode9zfgv.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty3" name="qty3" value="0" />
+                    <h5>The Heritage Collection Paris 1924 Polo by Lacoste - Cream<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price3" name="price3" value="140.00"
+                               class="text-danger text-right border-0" readonly> 140.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(3)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row text-center">
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/tote.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty6" name="qty6" value="0" />
+                    <h5>Paris 2024 Paralympics Tote Bag<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price6" name="price6" value="16.00"
+                           class="text-danger text-right border-0" readonly> 16.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(6)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/luvas.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty4" name="qty4" value="0" />
+                    <h5>Paris 2024 Olympics Gloves<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price4" name="price4" value="16.00"
+                               class="text-danger text-right border-0" readonly> 16.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(4)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/paris-2024-olympics-red-lanyard_ss5_p-200741942+pv-1+u-jigeqmjfn6ljktmibnhp+v-2dtlwrsdsdfoaqgdonf4.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty2" name="qty2" value="0" />
+                    <h5>Paris 2024 Olympics Red Lanyard<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price2" name="price2" value="9.00"
+                               class="text-danger text-right border-0" readonly> 9.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(2)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row text-center">
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/chapeu_chunga.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty5" name="qty5" value="0" />
+                    <h5>Paris 2024 Olympics All Over Print Bucket Hat - Black<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price5" name="price5" value="22.00"
+                           class="text-danger text-right border-0" readonly> 22.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(5)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/paris-2024-olympics-graphic-print-long-sleeve-t-shirt-grey_ss5_p-200444417+pv-1+u-aczqqsb03khnelb95a0k+v-qvqtrtbfvgapcxvjsims.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty3" name="qty3" value="0" />
+                    <h5>Paris 2024 Olympics Graphic Print Long Sleeve T-Shirt - Grey<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price3" name="price3" value="35.00"
+                           class="text-danger text-right border-0" readonly> 35.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(3)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="d-flex justify-content-center"><img src="images/shop/camisola.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
+                    <input type="hidden" id="qty1" name="qty1" value="0" />
+                    <h5>The Olympic Collection - Motto Latin Long Sleeve T-Shirt - White<br /></h5>
+                    <div class="text-danger text-right">
+                        <input type="hidden" id="price1" name="price1" value="40.00"
+                               class="text-danger text-right border-0" readonly> 40.00€
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(1)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <nav class="navbar navbar-light bg-light" id="footer">
+        <div class="container small d-flex justify-content-between align-items-center">
+            <!-- Texto e ícone GitHub juntos -->
+            <div class="navbar-text d-flex align-items-center">
+                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
+                <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
+                    <i class="fa-brands fa-github" style="color: black;"></i>
+                </a>
+            </div>
+            <!-- Universidade -->
+            <div class="navbar-nav">
+                <div class="nav-item d-flex align-items-center">
+                    <i class="fa-solid fa-school" style="margin-right: 4px; color: gray"></i>
+                    <a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

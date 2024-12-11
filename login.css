@@ -1,0 +1,63 @@
+body {
+    background-color: #f4f6f8; /* Fundo suave */
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Card de login */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do cabeçalho do card de login */
+.card-header {
+    background-color: white; /* Cor de fundo azul */
+    color: white;
+    font-weight: bold;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Estilo do corpo do card */
+.card-body {
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+/* Estilos para os botões */
+button {
+    border-radius: 25px;
+}
+
+/* Modal de registro */
+.modal-header {
+    background-color: #28a745; /* Cor verde */
+    color: white;
+}
+
+/* Estilo para os inputs */
+input.form-control {
+    border-radius: 25px;
+}
+
+/* Modal de Registro */
+.modal-body {
+    background-color: #f9f9f9;
+    padding: 30px;
+}
+
+/* Melhorar o link para o registro */
+.text-center a {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.text-center a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Adicionar espaçamento entre os inputs */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
