@@ -1,56 +1,86 @@
-/* Estilos para a linha do tempo */
 .timeline-container {
-    text-align: center;
-    margin: 40px auto;
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
 }
 
 .timeline {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     position: relative;
-    margin: 20px 0;
-    padding: 20px 0;
-    border-top: 2px solid #ccc;
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #ddd;
+    z-index: 1;
 }
 
 .event {
     position: relative;
-    background: #fff;
-    border: 2px solid #007BFF;
-    color: #007BFF;
+    background-color: #fff;
+    border: 2px solid #007bff;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+    margin: 0 20px;
 }
 
 .event:hover {
-    transform: scale(1.2);
-    background: #007BFF;
+    background-color: #007bff;
     color: #fff;
 }
 
-.event::after {
+.event[data-year]:hover::after {
     content: attr(data-year);
     position: absolute;
-    top: 70px;
-    font-size: 0.9rem;
-    color: #555;
+    bottom: 35px;
+    background: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .details {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
 }
 
-.details h2 {
-    margin-bottom: 10px;
+.balloon {
+    position: absolute;
+    display: none;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.balloon:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #f8f9fa transparent transparent transparent;
 }

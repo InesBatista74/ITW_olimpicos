@@ -45,7 +45,7 @@
                                 <i class="fa-solid fa-puzzle-piece"></i> Broken records
                             </a>
                             <a class="dropdown-item text-danger" href="liveEvents.html">
-                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Live events
+                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Watch it all
                             </a>
                         </div>
                     </li>
@@ -61,26 +61,20 @@
     </nav>
     <div class="container mt-4">
         <form class="mb-4">
-            <h2 class="text-start mb-3 text-dark fs-2 fw-normal">Olympic Games Shop</h2><hr>
-            <div class="row mb-4 mt-4">
-                <div class="col-md-1 offset-6 text-right">
-                    <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-                </div>
-                <div class="col-md-1 text-right">
-                    <span class="form-control" id="quantidades"
-                          title="Quantidade total de produtos">0</span>
-                </div>
-                <div class="col-md-2 text-right">
-                    <span class="form-control" id="total"
-                          title="Preço total da compra">0.00</span>
-                </div>
-                <div class="col-md-2 text-right">
-                    <a href="payment.html" onclick="return valid()" class="btn btn-primary">Buy</a>
+            <!-- Cabeçalho com flexbox -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="text-dark fs-2 fw-normal m-0">Olympic Games Shop</h2>
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-shopping-cart fa-2x me-3" aria-hidden="true"></i>
+                    <span class="form-control me-3" id="quantidades" title="Quantidade total de produtos">0</span>
+                    <span class="form-control me-3" id="total" title="Preço total da compra">0.00</span>
+                    <a href="payment.html" onclick="return valid()" class="btn btn-primary me-2">Buy</a>
                     <button type="button" onclick="clean()" class="btn btn-secondary" title="Limpar carrinho">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
             </div>
+            <hr>
             <div class="row text-center">
                 <div class="col-12 col-sm-4">
                     <div class="d-flex justify-content-center"><img src="images/shop/paris-2024-olympics-pop-out-logo-graphic-t-shirt-navy-womens_ss5_p-201327597+pv-1+u-uheyp9cjogoeqhzoft0m+v-utkmanxr9cwg9a6ih74j.avif" style="object-fit: contain; width: 100%; max-height: 300px;" /></div>
@@ -179,6 +173,10 @@
                     <button type="button" class="btn btn-primary btn-block" onclick="this.blur(); addProduct(1)"> Add to cart<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                 </div>
             </div>
+            <div class="container text-center mt-5">
+                <hr>
+                <p class="text-muted mb-0">© 2024 OlympicShop, All rights reserved</p>
+            </div>
         </form>
     </div>
     <nav class="navbar navbar-light bg-light" id="footer">
@@ -199,5 +197,10 @@
             </div>
         </div>
     </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="shop.js"></script>
+    <script src="https://getbootstrap.com/docs/5.2/assets/js/validate-forms.js"></script>
 </body>
 </html>

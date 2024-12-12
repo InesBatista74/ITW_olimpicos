@@ -48,7 +48,7 @@
                                 <i class="fa-solid fa-puzzle-piece"></i> Broken records
                             </a>
                             <a class="dropdown-item text-danger" href="liveEvents.html">
-                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Live events
+                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Watch it all
                             </a>
                         </div>
                     </li>
@@ -64,18 +64,15 @@
     </nav>
     <div class="container my-4">
         <h2 class="text">History of the Olympic Games</h2>
+        <hr>
         <!-- Linha do tempo -->
-        <div class="timeline-container">
+        <div class="timeline-container" style="margin-top: 200px; margin-bottom: 175px;">
             <div class="timeline">
-                <div class="event" data-year="1896">1896</div>
-                <div class="event" data-year="1924">1924</div>
-                <div class="event" data-year="1964">1964</div>
-                <div class="event" data-year="2004">2004</div>
-                <div class="event" data-year="2024">2024</div>
-            </div>
-            <div id="event-details" class="details">
-                <h2>Detalhes do Evento</h2>
-                <p>Selecione um ponto na linha do tempo para mais informações.</p>
+                <div class="event" data-year="1896" onclick="showDetails(this, '1896')">1896</div>
+                <div class="event" data-year="1924" onclick="showDetails(this, '1924')">1924</div>
+                <div class="event" data-year="1964" onclick="showDetails(this, '1964')">1964</div>
+                <div class="event" data-year="2004" onclick="showDetails(this, '2004')">2004</div>
+                <div class="event" data-year="2024" onclick="showDetails(this, '2024')">2024</div>
             </div>
         </div>
     </div>
@@ -106,16 +103,23 @@
             2024: "Paris sediará os Jogos Olímpicos pela terceira vez, após 1900 e 1924."
         };
 
-        document.querySelectorAll('.event').forEach(event => {
-            event.addEventListener('click', () => {
-                const year = event.getAttribute('data-year');
-                const eventDetails = document.getElementById('event-details');
-                eventDetails.innerHTML = `
-                    <h2>${year}</h2>
-                    <p>${details[year]}</p>
-                `;
-            });
-        });
+        function showDetails(element, year) {
+            const timeline = document.querySelector('.timeline');
+            const balloons = document.querySelectorAll('.balloon');
+            balloons.forEach(balloon => balloon.remove());
+
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.innerHTML = `<h4>${year}</h4><p>${details[year]}</p>`;
+            
+            timeline.appendChild(balloon);
+            const rect = element.getBoundingClientRect();
+            const timelineRect = timeline.getBoundingClientRect();
+            
+            balloon.style.left = `${rect.left - timelineRect.left - 75}px`;
+            balloon.style.top = `${rect.top - timelineRect.top - 100}px`;
+            balloon.style.display = 'block';
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
