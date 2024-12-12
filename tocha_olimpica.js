@@ -3,14 +3,14 @@ var vm = function () {
     console.log('ViewModel has been initiated.');
     // local vars (set as ko observables)
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/Sports');
-    self.displayName = 'Paris2024 Sports List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/torch_route');
+    self.displayName = 'Paris2024 Olympic Flame Relay Locations';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.sports = ko.observableArray([]);
+    self.flameRelayLocations = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(47);
+    self.totalRecords = ko.observable(73);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
 
@@ -49,8 +49,7 @@ var vm = function () {
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.sports(data);
-            console.log(data);
+            self.flameRelayLocations(data);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
