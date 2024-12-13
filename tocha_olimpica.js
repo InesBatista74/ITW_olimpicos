@@ -1,3 +1,4 @@
+// Inicializando o mapa
 const map = L.map('map').setView([48.8566, 2.3522], 5); // Coordenadas iniciais (Paris)
 
 // Adicionando camada de mapa base (OpenStreetMap)
@@ -9,12 +10,31 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // URL da API
 const apiUrl = 'http://192.168.160.58/Paris2024/API/Torch_route';
 
-// Criando um ícone customizado com a imagem fornecida
-const torchIcon = L.icon({
-    iconUrl: 'images/torch-removebg-preview.png', // Caminho para a imagem do arquivo
-    iconSize: [32, 32], // Tamanho do ícone
-    iconAnchor: [16, 32], // Posição do "pico" do ícone
-    popupAnchor: [0, -32] // Posição do popup
+// Ícone personalizado padrão (lilás)
+const defaultTorchIcon = L.divIcon({
+    className: 'custom-torch-icon',
+    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#e9a8f0;"></i>', // Lilás
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+// Ícone para o primeiro marcador (azul)
+const firstTorchIcon = L.divIcon({
+    className: 'custom-torch-icon',
+    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#3498db;"></i>', // Azul
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+// Ícone para o último marcador (vermelho)
+const lastTorchIcon = L.divIcon({
+    className: 'custom-torch-icon',
+    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#e74c3c;"></i>', // Vermelho
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
 });
 
 // Fetch dos dados da API e adição de marcadores ao mapa
@@ -26,12 +46,17 @@ fetch(apiUrl)
         return response.json();
     })
     .then(data => {
-        data.forEach(location => {
+        data.forEach((location, index) => {
             const { Lat, Lon, Title, City, Date_start, Date_end } = location;
 
-            // Criar um marcador apenas se Lat e Lon forem válidos
+            // Verifica se as coordenadas são válidas
             if (Lat && Lon) {
-                const marker = L.marker([parseFloat(Lat), parseFloat(Lon)], { icon: torchIcon }).addTo(map);
+                // Determinar o ícone baseado na posição (primeiro, último ou padrão)
+                let iconToUse = defaultTorchIcon;
+                if (index === 0) iconToUse = firstTorchIcon; // Primeiro marcador
+                if (index === data.length - 1) iconToUse = lastTorchIcon; // Último marcador
+
+                const marker = L.marker([parseFloat(Lat), parseFloat(Lon)], { icon: iconToUse }).addTo(map);
 
                 // Formatar datas
                 const startDate = new Date(Date_start).toLocaleString();
@@ -54,13 +79,13 @@ fetch(apiUrl)
                     hoverInfo.style.display = 'none';
                 });
 
-                // Adicionar evento de click com popup
+                // Adicionar evento de click com popup sem botão de fechar
                 marker.bindPopup(`
                     <b>${Title}</b><br>
                     City: ${City}<br>
                     Start: ${startDate}<br>
                     End: ${endDate}
-                `);
+                    `, { closeButton: false });
             }
         });
     })
