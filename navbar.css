@@ -1,0 +1,54 @@
+#athcolor:hover, #athcolor:focus {
+    color: dodgerblue;
+    cursor: pointer
+}
+
+.athchosen {
+    color: dodgerblue;
+    border-bottom: solid dodgerblue;
+    cursor: pointer
+}
+
+#compcolor:hover, #compcolor:focus {
+    color: rgb(255, 200, 0);
+    cursor: pointer
+}
+
+.compchosen {
+    color: rgb(255, 200, 0);
+    border-bottom: solid rgb(255, 200, 0);
+    cursor: pointer
+}
+
+#countrycolor:hover, #countrycolor:focus {
+    color: pink;
+    cursor: pointer
+}
+
+.countrychosen {
+    color: pink;
+    border-bottom: solid pink;
+    cursor: pointer
+}
+
+#gamecolor:hover, #gamecolor:focus {
+    color: rgb(18, 145, 61);
+    cursor: pointer
+}
+
+.gamechosen {
+    color: rgb(18, 145, 61);
+    border-bottom: solid rgb(18, 145, 61);
+    cursor: pointer
+}
+
+#modcolor:hover, #modcolor:focus {
+    color: rgb(249, 37, 18);
+    cursor: pointer
+}
+
+.modchosen {
+    color: rgb(249, 37, 18);
+    border-bottom: solid rgb(249, 37, 18);
+    cursor: pointer
+}
