@@ -1,133 +1,70 @@
-// ViewModel KnockOut
-var vm = function () {
-    console.log('ViewModel has been initiated.');
-    // local vars (set as ko observables)
-    var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/torch_route');
-    self.displayName = 'Paris2024 Olympic Flame Relay Locations';
-    self.error = ko.observable('');
-    self.passingMessage = ko.observable('');
-    self.flameRelayLocations = ko.observableArray([]);
-    self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(73);
-    self.hasPrevious = ko.observable(false);
-    self.hasNext = ko.observable(false);
+const map = L.map('map').setView([48.8566, 2.3522], 5); // Coordenadas iniciais (Paris)
 
-    self.previousPage = ko.computed(function () {
-        return self.currentPage() * 1 - 1;
-    }, self);
-    self.nextPage = ko.computed(function () {
-        return self.currentPage() * 1 + 1;
-    }, self);
-    self.fromRecord = ko.computed(function () {
-        return self.previousPage() * self.pagesize() + 1;
-    }, self);
-    self.toRecord = ko.computed(function () {
-        return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
-    }, self);
-    self.totalPages = ko.observable(3);
-    self.pageArray = function () {
-        var list = [];
-        var size = Math.min(self.totalPages(), 9);
-        var step;
-        if (size < 9 || self.currentPage() === 1)
-            step = 0;
-        else if (self.currentPage() >= self.totalPages() - 4)
-            step = self.totalPages() - 9;
-        else
-            step = Math.max(self.currentPage() - 5, 0);
+// Adicionando camada de mapa base (OpenStreetMap)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
 
-        for (var i = 1; i <= size; i++)
-            list.push(i + step);
-        return list;
-    };
+// URL da API
+const apiUrl = 'http://192.168.160.58/Paris2024/API/Torch_route';
 
-    // page events
-    self.activate = function (id) {
-        console.log('CALL: getSports...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        ajaxHelper(composedUri, 'GET').done(function (data) {
-            hideLoading();
-            self.flameRelayLocations(data);
-            self.currentPage(data.CurrentPage);
-            self.hasNext(data.HasNext);
-            self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalSports);
-        });
-    };
-
-    // internal funcs
-    function ajaxHelper(uri, method, data) {
-        self.error(''); // clears the error msg
-        return $.ajax({
-            type: method,
-            url: uri,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data ? JSON.stringify(data) : null,
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log("AJAX Call[" + uri + "] Fail...");
-                hideLoading();
-                self.error(errorThrown);
-            }
-        });
-    }
-
-    function sleep(milliseconds) {
-        const start = Date.now();
-        // the while loop (empty) will run for the desired duration
-        // essentially fullfilling the role of a sleep function 
-        while (Date.now() - start < milliseconds);
-    }
-
-    function showLoading() {
-        $("#myModal").modal('show', {
-            backdrop: 'static',
-            keyboard: false
-        });
-    }
-    function hideLoading() {
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $("#myModal").modal('hide');
-        })
-    }
-
-    function getUrlParameter(sParam) {
-        var sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-        console.log("sPageURL=", sPageURL);
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-            }
-        }
-    };
-
-    // start
-    showLoading();
-    var pg = getUrlParameter('page');
-    console.log(pg);
-    if (pg == undefined)
-        self.activate(1);
-    else {
-        self.activate(pg);
-    }
-    console.log("VM initialized!");
-};
-
-$(document).ready(function () {
-    console.log("ready!");
-    ko.applyBindings(new vm());
+// Criando um ícone customizado com a imagem fornecida
+const torchIcon = L.icon({
+    iconUrl: 'images/torch-removebg-preview.png', // Caminho para a imagem do arquivo
+    iconSize: [32, 32], // Tamanho do ícone
+    iconAnchor: [16, 32], // Posição do "pico" do ícone
+    popupAnchor: [0, -32] // Posição do popup
 });
 
-$(document).ajaxComplete(function (event, xhr, options) {
-    $("#myModal").modal('hide');
-})
+// Fetch dos dados da API e adição de marcadores ao mapa
+fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados da API');
+        }
+        return response.json();
+    })
+    .then(data => {
+        data.forEach(location => {
+            const { Lat, Lon, Title, City, Date_start, Date_end } = location;
 
+            // Criar um marcador apenas se Lat e Lon forem válidos
+            if (Lat && Lon) {
+                const marker = L.marker([parseFloat(Lat), parseFloat(Lon)], { icon: torchIcon }).addTo(map);
+
+                // Formatar datas
+                const startDate = new Date(Date_start).toLocaleString();
+                const endDate = new Date(Date_end).toLocaleString();
+
+                // Adicionar eventos de mouse (hover)
+                marker.on('mouseover', (e) => {
+                    hoverInfo.style.display = 'block';
+                    hoverInfo.innerHTML = `
+                        <strong>${Title}</strong><br>
+                        <strong>City:</strong> ${City}<br>
+                        <strong>Start:</strong> ${startDate}<br>
+                        <strong>End:</strong> ${endDate}
+                    `;
+                    hoverInfo.style.left = e.originalEvent.pageX + 'px';
+                    hoverInfo.style.top = e.originalEvent.pageY + 'px';
+                });
+
+                marker.on('mouseout', () => {
+                    hoverInfo.style.display = 'none';
+                });
+
+                // Adicionar evento de click com popup
+                marker.bindPopup(`
+                    <b>${Title}</b><br>
+                    City: ${City}<br>
+                    Start: ${startDate}<br>
+                    End: ${endDate}
+                `);
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao carregar dados:', error);
+        alert('Não foi possível carregar as localizações.');
+    });
