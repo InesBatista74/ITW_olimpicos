@@ -1,5 +1,6 @@
 // Inicializando o mapa
-const map = L.map('map').setView([48.8566, 2.3522], 5); // Coordenadas iniciais (Paris)
+const map = L.map('map').setView([48.8566, 2.3522], 12);
+
 
 // Adicionando camada de mapa base (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -10,32 +11,35 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // URL da API
 const apiUrl = 'http://192.168.160.58/Paris2024/API/Torch_route';
 
-// Ícone personalizado padrão (lilás)
+// Ícone personalizado padrão (cor: #4175f0 e tamanho aumentado)
 const defaultTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#e9a8f0;"></i>', // Lilás
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
+    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    iconSize: [10, 10], // Aumentando o tamanho do ícone
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
 });
 
 // Ícone para o primeiro marcador (azul)
 const firstTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#3498db;"></i>', // Azul
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
+    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    iconSize: [10, 10], // Aumentando o tamanho do ícone
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
 });
 
 // Ícone para o último marcador (vermelho)
 const lastTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-fire-flame-simple" style="font-size: 32px; color:#e74c3c;"></i>', // Vermelho
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
+    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    iconSize: [10, 10], // Aumentando o tamanho do ícone
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
 });
+
+// Array para armazenar coordenadas dos pontos
+let torchRoute = [];
 
 // Fetch dos dados da API e adição de marcadores ao mapa
 fetch(apiUrl)
@@ -51,6 +55,9 @@ fetch(apiUrl)
 
             // Verifica se as coordenadas são válidas
             if (Lat && Lon) {
+                // Adicionar as coordenadas ao array do percurso
+                torchRoute.push([parseFloat(Lat), parseFloat(Lon)]);
+
                 // Determinar o ícone baseado na posição (primeiro, último ou padrão)
                 let iconToUse = defaultTorchIcon;
                 if (index === 0) iconToUse = firstTorchIcon; // Primeiro marcador
@@ -85,9 +92,17 @@ fetch(apiUrl)
                     City: ${City}<br>
                     Start: ${startDate}<br>
                     End: ${endDate}
-                    `, { closeButton: false });
+                `, { closeButton: false });
             }
         });
+
+        // Depois de adicionar todos os marcadores, adicionar a linha conectando-os
+        if (torchRoute.length > 1) {
+            const torchLine = L.polyline(torchRoute, { color: '#e878f5', weight: 4 }).addTo(map);
+
+            // Ajusta o mapa para que a linha e os pontos fiquem visíveis
+            map.fitBounds(torchLine.getBounds());
+        }
     })
     .catch(error => {
         console.error('Erro ao carregar dados:', error);

@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 5rem;  /* Aumentei a margem superior para afastar mais do topo */
+    margin-bottom: 50px; /* Reduzi a margem inferior para puxar a linha do tempo para mais perto do footer */
 }
 
 .timeline {
@@ -30,14 +31,15 @@
     background-color: #fff;
     border: 2px solid #007bff;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 40px; /* Tamanho aumentado */
+    height: 40px; /* Tamanho aumentado */
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     margin: 0 20px;
+    font-size: 16px; /* Ajustar o texto dentro das bolinhas */
 }
 
 .event:hover {
@@ -45,15 +47,13 @@
     color: #fff;
 }
 
-.event[data-year]:hover::after {
+/* Remover a caixa de fundo do ano */
+.event[data-year]:after {
     content: attr(data-year);
     position: absolute;
-    bottom: 35px;
-    background: #007bff;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
+    bottom: -30px; /* O ano aparece abaixo da bolinha */
     font-size: 14px;
+    color: #007bff; /* Cor do ano */
     white-space: nowrap;
 }
 
@@ -84,3 +84,6 @@
     border-style: solid;
     border-color: #f8f9fa transparent transparent transparent;
 }
+
+
+

@@ -37,3 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Pagamento confirmado com sucesso!");
     });
 });
+
+
+
+
+ 

@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
-    <link rel="stylesheet" href="history.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Favourites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
-    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
@@ -62,27 +59,59 @@
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="statistics.html"><i
                      class="fa-solid fa-chart-column text-primary me-3"></i></i>&nbsp</a></div>
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
-                     class="fa-solid fa-shop"></i>&nbsp</a></div>
+                    class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
     </nav>
-    <div class="container my-4">
-        <h2 class="text">History of the Modern Olympic Games</h2>
-        <hr>
-        <!-- Linha do tempo -->
-        <div class="timeline-container" style="margin-top: 335px; margin-bottom: 60px;">
-            <div class="timeline">
-                <div class="event" data-year="1896" onclick="showDetails(this, '1896')"></div>
-                <div class="event" data-year="1900" onclick="showDetails(this, '1900')"></div>
-                <div class="event" data-year="1936" onclick="showDetails(this, '1936')"></div>
-                <div class="event" data-year="1940" onclick="showDetails(this, '1940')"></div>
-                <div class="event" data-year="1960" onclick="showDetails(this, '1960')"></div>
-                <div class="event" data-year="1968" onclick="showDetails(this, '1968')"></div>
-                <div class="event" data-year="1984" onclick="showDetails(this, '1984')"></div>
-                <div class="event" data-year="2008" onclick="showDetails(this, '2008')"></div>
-                <div class="event" data-year="2021" onclick="showDetails(this, '2021')"></div>
-                <div class="event" data-year="2024" onclick="showDetails(this, '2024')"></div>
+    <div class="container my-xs-4m mt-4">
+        <div class="border-bottom py-2 mb-2">
+            <h2>Favourites</h2>
+        </div>
+        <div class="container mb-4 bg-light border rounded mt-4" style="padding:30px">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="athfav.html">
+                <img src="images/Favourites/usain-bolt.webp" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa fa-user text-primary"></i> Athletes</h5>
+                </div>
+                    </a>
             </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="compFav.html">
+                <img src="images/compfav.png" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa fa-trophy text-warning"></i> Competitions</h5>
+                </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="countryFav.html">
+                    <img src="images/countryfav.png" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                    <div class="card-body text-center">
+                        <h5 class="card-title btn-primary"><i class=" fa fa-flag"></i> Countries</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="gameFav.html">
+                <img src="images/gamesfav.png" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa fa-map-marker text-success"></i> Games</h5>
+                </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="modFav.html">
+                <img src="images/modfav.png" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa fa-soccer-ball-o text-danger"></i> Modalities</h5>
+                </div>
+                </a>
+            </div>
+        </div>
         </div>
     </div>
     <nav class="navbar navbar-light bg-light" id="footer">
@@ -103,7 +132,8 @@
             </div>
         </div>
     </nav>
-    <script src="history.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
