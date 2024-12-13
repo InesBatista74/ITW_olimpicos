@@ -19,32 +19,16 @@ function showDetails(element, year) {
     const balloon = document.createElement('div');
     balloon.className = 'balloon';
     balloon.innerHTML = `<h4>${year}</h4><p>${details[year]}</p>`;
-
-    // Adicionar o balão à linha do tempo
+    
     timeline.appendChild(balloon);
-
-    // Obter as posições de cada elemento
     const rect = element.getBoundingClientRect();
     const timelineRect = timeline.getBoundingClientRect();
-
-    // Ajuste do afastamento vertical e horizontal
-    const balloonOffsetTop = 300; // Afastamento vertical do balão
-    const balloonOffsetLeft = 0;  // Alinhamento horizontal do balão
-
-    // A posição horizontal agora vai ajustar a ponta do balão para o centro da bolinha
-    const balloonLeft = rect.left - timelineRect.left + rect.width / 2 - balloon.offsetWidth / 2 + balloonOffsetLeft;
-
-    // A posição vertical agora garante que o balão não toque na linha
-    const balloonTop = rect.top - timelineRect.top - balloonOffsetTop;
-
-    // Ajuste do balão para alinhar a ponta com o centro da bolinha
-    balloon.style.left = `${balloonLeft}px`;
-    balloon.style.top = `${balloonTop}px`;
-
-    // Exibe o balão
+    
+    // A posição da caixa de texto agora está ajustada para aparecer acima da linha do tempo
+    balloon.style.left = `${rect.left - timelineRect.left - 100}px`;  // Ajustar a posição horizontal
+    balloon.style.top = `${rect.top - timelineRect.top - 180}px`;  // Ajustar para aparecer acima
     balloon.style.display = 'block';
 }
-
 
 
 
