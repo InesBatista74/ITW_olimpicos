@@ -120,12 +120,6 @@
                         MB WAY
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="paymentType" id="paymentBankTransfer" value="bankTransfer" required>
-                    <label class="form-check-label" for="paymentBankTransfer">
-                        Transferência Bancária
-                    </label>
-                </div>
             </fieldset>
 
             <div class="col-12 text-center">
@@ -136,14 +130,16 @@
     </div>
     
 
-    <div class="modal fade" id="cardModal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title" id="cardModalLabel">Dados do Cartão</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+    <!-- Modal Dados do Cartão -->
+<div class="modal fade" id="cardModal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="cardModalLabel">Dados do Cartão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="cardForm">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="cardNumber" class="form-label">Número do Cartão</label>
@@ -158,54 +154,35 @@
                             <input type="text" class="form-control" id="cvv" placeholder="123" required>
                         </div>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary mt-3">Confirmar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal MB WAY -->
-    <div class="modal fade" id="mbwayModal" tabindex="-1" aria-labelledby="mbwayModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title" id="mbwayModalLabel">Dados MB WAY</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+<!-- Modal MB WAY -->
+<div class="modal fade" id="mbwayModal" tabindex="-1" aria-labelledby="mbwayModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="mbwayModalLabel">Dados MB WAY</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="mbwayForm">
                     <div class="row">
                         <div class="col-12">
                             <label for="mbwayPhone" class="form-label">Número de Telemóvel</label>
                             <input type="tel" class="form-control" id="mbwayPhone" placeholder="912345678" required>
                         </div>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary mt-3">Confirmar</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <!-- Modal Transferência Bancária -->
-    <div class="modal fade" id="bankTransferModal" tabindex="-1" aria-labelledby="bankTransferModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title" id="bankTransferModalLabel">Dados da Transferência Bancária</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="reference" class="form-label">Referência</label>
-                            <input type="text" class="form-control" id="reference" readonly>
-                        </div>
-                        <div class="col-12">
-                            <label for="entity" class="form-label">Entidade</label>
-                            <input type="text" class="form-control" id="entity" readonly>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
 
 
