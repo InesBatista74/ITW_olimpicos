@@ -1,19 +1,17 @@
-// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel has been initiated.');
     // local vars (set as ko observables)
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/Venues');
-    self.displayName = 'Paris2024 Venues List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/torch_route');
+    self.displayName = 'Paris2024 Olympic Flame Relay Locations';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.venues = ko.observableArray([]);
+    self.flameRelayLocations = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(45);
+    self.totalRecords = ko.observable(73);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -37,20 +35,17 @@ var vm = function () {
             step = self.totalPages() - 9;
         else
             step = Math.max(self.currentPage() - 5, 0);
-
         for (var i = 1; i <= size; i++)
             list.push(i + step);
         return list;
     };
-
     // page events
     self.activate = function (id) {
         console.log('CALL: getSports...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             hideLoading();
-            self.venues(data);
-            console.log(data);
+            self.flameRelayLocations(data);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -59,7 +54,6 @@ var vm = function () {
             self.totalRecords(data.TotalSports);
         });
     };
-
     // internal funcs
     function ajaxHelper(uri, method, data) {
         self.error(''); // clears the error msg
@@ -76,14 +70,12 @@ var vm = function () {
             }
         });
     }
-
     function sleep(milliseconds) {
         const start = Date.now();
         // the while loop (empty) will run for the desired duration
         // essentially fullfilling the role of a sleep function 
         while (Date.now() - start < milliseconds);
     }
-
     function showLoading() {
         $("#myModal").modal('show', {
             backdrop: 'static',
@@ -95,7 +87,6 @@ var vm = function () {
             $("#myModal").modal('hide');
         })
     }
-
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
@@ -104,13 +95,11 @@ var vm = function () {
         console.log("sPageURL=", sPageURL);
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
-
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
         }
     };
-
     // start
     showLoading();
     var pg = getUrlParameter('page');
@@ -122,26 +111,10 @@ var vm = function () {
     }
     console.log("VM initialized!");
 };
-
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
 });
-
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-
-
-
-
-// Additional observables for the image modal
-self.selectedVenueName = ko.observable('');
-self.selectedVenueImage = ko.observable('');
-
-// Function to display the venue image
-self.showVenueImage = function(venue) {
-    self.selectedVenueName(venue.Name);
-    // Replace the below line with the actual logic to determine the image URL
-    self.selectedVenueImage(`images/venues/${venue.Id}.jpg`);
-};

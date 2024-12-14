@@ -1,5 +1,4 @@
-// Inicializando o mapa
-const map = L.map('map').setView([48.8566, 2.3522], 12);
+const map = L.map('map').setView([48.8566, 2.3522], 12); // Coordenadas iniciais (Paris)
 
 
 // Adicionando camada de mapa base (OpenStreetMap)
@@ -14,7 +13,7 @@ const apiUrl = 'http://192.168.160.58/Paris2024/API/Torch_route';
 // Ícone personalizado padrão (cor: #4175f0 e tamanho aumentado)
 const defaultTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    html: '<i class="fa-solid fa-location-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
     iconSize: [10, 10], // Aumentando o tamanho do ícone
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -23,7 +22,7 @@ const defaultTorchIcon = L.divIcon({
 // Ícone para o primeiro marcador (azul)
 const firstTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    html: '<i class="fa-solid fa-location-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
     iconSize: [10, 10], // Aumentando o tamanho do ícone
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -32,7 +31,7 @@ const firstTorchIcon = L.divIcon({
 // Ícone para o último marcador (vermelho)
 const lastTorchIcon = L.divIcon({
     className: 'custom-torch-icon',
-    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
+    html: '<i class="fa-solid fa-location-pin" style="font-size: 40px; color:#5f4bb8"></i>', // Azul #4175f0
     iconSize: [10, 10], // Aumentando o tamanho do ícone
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -108,3 +107,14 @@ fetch(apiUrl)
         console.error('Erro ao carregar dados:', error);
         alert('Não foi possível carregar as localizações.');
     });
+
+
+
+// Definir o ícone vermelho para o marcador clicado
+const clickedTorchIcon = L.divIcon({
+    className: 'custom-torch-icon',
+    html: '<i class="fa-solid fa-map-pin" style="font-size: 40px; color:#ff0000"></i>', // Vermelho
+    iconSize: [10, 10],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
+});

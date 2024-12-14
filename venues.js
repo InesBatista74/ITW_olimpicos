@@ -37,7 +37,7 @@ fetch(apiUrl)
             if (Lat && Lon) {
                 // Criar um ícone personalizado usando HTML
                 const customIcon = L.divIcon({
-                    html: '<i class="fa-solid fa-thumbtack" style="font-size: 24px; color: #4016f7;"></i>',
+                    html: '<i class="fa-solid fa-circle" style="font-size: 24px; color: #b457fa;"></i>',
                     iconSize: [50, 50], // Tamanho do ícone
                     className: 'custom-marker' // Classe personalizada para estilização
                 });
