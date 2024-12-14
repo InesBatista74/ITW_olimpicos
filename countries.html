@@ -17,16 +17,30 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images\Logotipo.png"
-                    height="37" /></a>
+            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png" height="37" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html" id="athcolor"><i
-                                class="fa fa-user text-primary"></i> Athletes</a></li>
+                    <li class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bars"></i> People
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" style="color:dimgray" href="athletes.html">
+                                <i class="fa-solid fa-person-running" style="color:darkmagenta"></i> Athletes
+                            </a>
+                            <a class="dropdown-item" style="color: dimgray" href="BrokenRecords.html">
+                                <i class="fa-solid fa-stopwatch-20" style="color: blueviolet"></i> Coaches
+                            </a>
+                            <a class="dropdown-item" style="color: dimgray" href="Venues.html">
+                                <i class="fa-solid fa-user" style="color: blue"></i>  Referees
+                            </a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html" id="compcolor"><i
                                 class="fa fa-trophy text-warning"></i> Competitions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html" id="countrycolor"><i
@@ -34,26 +48,22 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html" id="gamecolor"><i
                                 class="fa fa-map-marker text-success"></i> Games</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="sports.html" id="modcolor"><i
-                                class="fa-solid fa-football" style="color: red;"></i> Sports</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="tocha_olímpica.html" id="modcolor"><i
-                                class="fa-solid fa-location-pin" style="color: red;"></i> Olympic Flame Relay</a></li>
+                                class="fa-solid fa-football" style="color: orange;"></i> Sports</a></li>
+                                <li class="nav-item"><a class="nav-link" aria-current="page" href="tocha_olímpica.html" id="modcolor"><i class="fa-solid fa-location-pin" style="color: red;"></i> Tocha Olímpica</a></li>
                     <li class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bars"></i> More
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" style="color:dimgray" href="history.html">
-                                <i class="fa-solid fa-landmark"></i> History
+                            <a class="dropdown-item" style="color:dimgray" href="athletes.html">
+                                <i class="fa-solid fa-person-running" style="color:darkmagenta"></i> Athletes
                             </a>
-                            <a class="dropdown-item" style="color: dimgray" href="BrokenRecords.html">
-                                <i class="fa-solid fa-puzzle-piece"></i> Broken records
+                            <a class="dropdown-item" style="color: dimgray" href="coaches.html">
+                                <i class="fa-solid fa-stopwatch-20" style="color: blueviolet"></i> Coaches
                             </a>
-                            <a class="dropdown-item" style="color: dimgray" href="Venues.html">
-                                <i class="fa-regular fa-building"></i> Venues
-                            </a>
-                            <a class="dropdown-item text-danger" href="liveEvents.html">
-                                <i class="fa fa-circle text-danger" aria-hidden="true"></i> Watch it all
+                            <a class="dropdown-item" style="color: dimgray" href="referees.html">
+                                <i class="fa-solid fa-user" style="color: blue"></i>  Referees
                             </a>
                         </div>
                     </li>
@@ -61,9 +71,9 @@
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="favourites.html"><i
                             class="fa fa-heart text-danger me-3"></i>&nbsp</a></div>
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="statistics.html"><i
-                            class="fa fa-bar-chart text-primary me-3"></i>&nbsp</a></div>
+                     class="fa-solid fa-chart-column text-primary me-3"></i></i>&nbsp</a></div>
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
-                            class="fa-solid fa-shop"></i>&nbsp</a></div>
+                     class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
     </nav>
