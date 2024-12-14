@@ -1,150 +1,118 @@
-// Elementos globais
-const inputPrecoTotal = document.getElementById("total");
-const inputQtdTotal = document.getElementById("quantidades");
+$('document').ready(function () {
+    const carousel = new bootstrap.Carousel('#myCarousel', {
+        interval: 5000
+    });
+})
 
-// Variáveis para cálculo
+let inputPrecoTotal = document.getElementById("total");
+let inputQtdTotal = document.getElementById("quantidades");
 let precoTotal = 0;
 let qtdTotal = 0;
 
-// Função para adicionar um produto
+
 function addProduct(number) {
-    const quantidadeProdutoSelecionado = document.getElementById("qty" + number);
-    quantidadeProdutoSelecionado.value = parseInt(quantidadeProdutoSelecionado.value) + 1; // Incrementa corretamente
-    calculate(); // Atualiza os totais
+    let quantidadeProdutoSelecionado = document.getElementById("qty" + number);
+    quantidadeProdutoSelecionado.value++;
+    calculate();
 }
 
-// Função para calcular o total de preços e quantidades
 function calculate() {
+    let precAtual, qtdAtual;
     precoTotal = 0;
     qtdTotal = 0;
 
     for (let i = 1; i <= 6; i++) {
-        const precAtual = parseFloat(document.getElementById('price' + i)?.value || 0); // Obtém o preço atual
-        const qtdAtual = parseInt(document.getElementById('qty' + i)?.value || 0); // Obtém a quantidade atual
+        precAtual = parseFloat(document.getElementById('price' + i).value);
+        qtdAtual = parseFloat(document.getElementById('qty' + i).value);
         precoTotal += precAtual * qtdAtual;
         qtdTotal += qtdAtual;
     }
 
-    // Atualiza os campos de totais
-    inputQtdTotal.value = qtdTotal;
-    inputPrecoTotal.value = precoTotal.toFixed(2);
+    inputQtdTotal.innerText = qtdTotal;
+    inputPrecoTotal.innerText = precoTotal.toFixed(2);
 }
 
-// Função para validar o carrinho
 function valid() {
     if (precoTotal <= 0 && qtdTotal <= 0) {
-        alert("Erro! O carrinho está vazio.");
+        alert("Erro! O carrinho está vazio");
         return false;
+    } else {
+        return true
     }
-    return true;
 }
 
-// Função para limpar o carrinho
 function clean() {
     for (let i = 1; i <= 6; i++) {
-        const quantidadeProduto = document.getElementById('qty' + i);
-        if (quantidadeProduto) {
-            quantidadeProduto.value = 0;
-        }
+        qtdAtual = document.getElementById('qty' + i).value = 0;
     }
-
-    // Reseta os totais
     precoTotal = 0;
     qtdTotal = 0;
-    inputPrecoTotal.value = "0.00";
-    inputQtdTotal.value = 0;
+    inputPrecoTotal.innerText = "0.00";
+    inputQtdTotal.innerText = 0;
 }
 
-// Função para validar o formulário de cadastro
 function validate() {
-    let retVal = true;
-
-    // Valida o campo de nome
-    const name = document.getElementById('Name');
-    const nameError = document.getElementById('NameError');
-    if (name.value.trim().length < 3) {
+    var retVal = true;
+    if ($('#Name').val().trim().length < 3) {
         retVal = false;
-        nameError.style.display = 'block';
+        $('#NameError').show();
     } else {
-        nameError.style.display = 'none';
+        $('#NameError').hide();
+    }
+    var re = /\S+@\S+\.\S+/;
+    var email = $('#Email').val().trim()
+    if (!re.test(email)) {
+        $('#EmailError').show();
+        retVal = false;
+    }
+    else $('#EmailError').hide();
+
+    if ($('#Password').val().trim().length < 3) {
+        retVal = false;
+        $('#PasswordError').show();
+    } else {
+        $('#PasswordError').hide();
     }
 
-    // Valida o campo de email
-    const email = document.getElementById('Email').value.trim();
-    const emailError = document.getElementById('EmailError');
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-        retVal = false;
-        emailError.style.display = 'block';
-    } else {
-        emailError.style.display = 'none';
-    }
+    var terms = document.querySelectorAll('input[name="Terms"]:checked').length;
+            var termsError = document.getElementById("termsError")
+            if (terms < 1) {
+                retVal = false;
+                termsError.classList.add("d-block")
+                termsError.classList.remove("d-none");
+            }
+            else {
+                termsError.classList.remove("d-block")
+                termsError.classList.add("d-none");
+            }
+            return retVal;
+}
 
-    // Valida o campo de senha
-    const password = document.getElementById('Password');
-    const passwordError = document.getElementById('PasswordError');
-    if (password.value.trim().length < 3) {
+function validate1() {
+    var retVal = true;
+    if ($('#NameLogin').val().trim().length < 3) {
         retVal = false;
-        passwordError.style.display = 'block';
+        $('#UserError').show();
     } else {
-        passwordError.style.display = 'none';
+        $('#UserError').hide();
     }
-
-    // Valida os termos de uso
-    const termsChecked = document.querySelectorAll('input[name="Terms"]:checked').length;
-    const termsError = document.getElementById("termsError");
-    if (termsChecked < 1) {
+    if ($('#PasswordLogin').val().trim().length < 3) {
         retVal = false;
-        termsError.classList.add("d-block");
-        termsError.classList.remove("d-none");
+        $('#PassError').show();
     } else {
-        termsError.classList.remove("d-block");
-        termsError.classList.add("d-none");
+        $('#PassError').hide();
     }
-
     return retVal;
 }
 
-// Função para validar o formulário de login
-function validateLogin() {
-    let retVal = true;
-
-    // Valida o nome de usuário
-    const userName = document.getElementById('NameLogin');
-    const userError = document.getElementById('UserError');
-    if (userName.value.trim().length < 3) {
+function validate2() {
+    var retVal = true;
+    var re = /\S+@\S+\.\S+/;
+    var email = $('#email2').val().trim()
+    if (!re.test(email)) {
+        $('#emailError2').show();
         retVal = false;
-        userError.style.display = 'block';
-    } else {
-        userError.style.display = 'none';
     }
-
-    // Valida a senha
-    const userPassword = document.getElementById('PasswordLogin');
-    const passError = document.getElementById('PassError');
-    if (userPassword.value.trim().length < 3) {
-        retVal = false;
-        passError.style.display = 'block';
-    } else {
-        passError.style.display = 'none';
-    }
-
-    return retVal;
-}
-
-// Função para validar o email no formulário de recuperação
-function validateEmailRecovery() {
-    let retVal = true;
-
-    const email = document.getElementById('email2').value.trim();
-    const emailError = document.getElementById('emailError2');
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-        emailError.style.display = 'block';
-        retVal = false;
-    } else {
-        emailError.style.display = 'none';
-    }
-
+    else $('#emailError2').hide();
     return retVal;
 }

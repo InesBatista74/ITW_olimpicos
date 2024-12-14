@@ -43,6 +43,12 @@ var vm = function () {
         return list;
     };
 
+
+
+
+
+    
+
     // page events
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
