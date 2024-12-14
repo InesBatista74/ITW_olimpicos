@@ -1,19 +1,45 @@
-﻿// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel has been initiated.');
-    // local vars (set as ko observables)
     var self = this;
+
+    // Base observables
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
     self.displayName = 'Paris2024 Athletes List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.athletes = ko.observableArray([]);
+    self.filteredAthletes = ko.observableArray([]); // Array for filtered athletes
+    self.searchQuery = ko.observable(""); // Observable for the search input
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
+    self.pagesize = ko.observable(11111);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.totalPages = ko.observable(0);
 
+    // Search functionality
+    self.triggerSearch = function () {
+        // Show loading modal when search starts (before AJAX request)
+        showLoading();
+
+        var query = self.searchQuery().toLowerCase(); // Convert to lowercase for case-insensitive matching
+        if (!query) {
+            self.filteredAthletes(self.athletes()); // Reset to all athletes if no search query
+            hideLoading(); // Hide loading modal immediately if no query
+        } else {
+            // Simulate asynchronous search filtering with a timeout to ensure the modal is shown before filtering starts
+            setTimeout(function () {
+                var filtered = ko.utils.arrayFilter(self.athletes(), function (athlete) {
+                    return athlete.Name.toLowerCase().includes(query); // Filter by athlete name
+                });
+                self.filteredAthletes(filtered);
+                hideLoading(); // Hide loading modal once search is complete
+            }, 100); // small delay to ensure modal shows up
+        }
+    };
+
+
+    // Pagination helpers
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -26,7 +52,7 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.observable(0);
+
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -43,26 +69,27 @@ var vm = function () {
         return list;
     };
 
-    // page events
+    // Page events
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.athletes(data.Athletes);
+            self.athletes(data.Athletes); // Populate athletes
+            self.filteredAthletes(data.Athletes); // Set all athletes as default for filtering
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize)
+            self.pagesize(data.PageSize);
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalAhletes);
         });
     };
 
-    // internal funcs
+    // Internal functions
     function ajaxHelper(uri, method, data) {
-        self.error(''); // clears the error msg
+        self.error('');
         return $.ajax({
             type: method,
             url: uri,
@@ -77,13 +104,6 @@ var vm = function () {
         });
     }
 
-    function sleep(milliseconds) {
-        const start = Date.now();
-        // the while loop (empty) will run for the desired duration
-        // essentially fullfilling the role of a sleep function 
-        while (Date.now() - start < milliseconds);
-    }
-
     function showLoading() {
         $("#myModal").modal('show', {
             backdrop: 'static',
@@ -93,7 +113,7 @@ var vm = function () {
     function hideLoading() {
         $('#myModal').on('shown.bs.modal', function (e) {
             $("#myModal").modal('hide');
-        })
+        });
     }
 
     function getUrlParameter(sParam) {
@@ -111,7 +131,7 @@ var vm = function () {
         }
     };
 
-    // start
+    // Start
     showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);
@@ -130,4 +150,4 @@ $(document).ready(function () {
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-})
+});
