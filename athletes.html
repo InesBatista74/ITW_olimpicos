@@ -69,10 +69,16 @@
 
 
 
-    <div class="container">
-        <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+    <div class="container mt-4">
+        <div class="border-bottom py-2 mb-3 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Athletes List</h2>
+            <div class="col-6" id="cover">
+                <div class="row" style="justify-content:end">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="width:35%" id="Search" name="procura" autocomplete="off">
+                </div>
+            </div>
         </div>
+        
         <!-- ko if:athletes().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
@@ -108,7 +114,7 @@
             </div>
         </div>
         <!-- /ko -->
-    
+
         <table class="table table-striped table-sm small">
             <thead class="table-secondary">
                 <tr>
@@ -183,5 +189,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--JS script for athletes.html-->
     <script src="athletes.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            const api_url = "http://192.168.160.58/Olympics/api/Athletes/Search";
+
+            $("#Search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: api_url,
+                        data: {
+                            q: $('#Search').val().toLowerCase()
+                        },
+                        success: function (data) {
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'Sem resultados',
+                                    value: response.term,
+                                }];
+                                response(result);
+                            } else {
+                                var nData = $.map(data.slice(0, 10), function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Id,
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results);
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $("#Search").val(ui.item.label);
+                    window.location.href = "./athleteDetails.html?id=" + ui.item.value;
+
+
+        // h.loadTitleModal(ui.item.value)
+                },
+                focus: function (event, ui) {
+                    $("#Search").val(ui.item.label);
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
