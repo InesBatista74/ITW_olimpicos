@@ -1,0 +1,15 @@
+/* Alinha a caixa de seleção à direita */
+.form-floating {
+    display: flex;
+    justify-content: flex-end; /* Empurra para o lado direito */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col-md-6 {
+    flex-grow: 0;
+}
