@@ -20,7 +20,6 @@ $(document).ready(function () {
                     <td>${athlete.Id}</td>
                     <td>${athlete.Name}</td>
                     <td>${athlete.Sex}</td>
-                    <td><img src="${athlete.PhotoUrl || 'default.jpg'}" alt="${athlete.Name}" style="width: 50px; height: auto;"></td>
                     <td><a href="./athleteDetails.html?id=${athlete.Id}" class="btn btn-light btn-xs"><i class="fa-solid fa-person" title="Show details"></i></a></td>
                 </tr>`;
                 tableBody.append(row);

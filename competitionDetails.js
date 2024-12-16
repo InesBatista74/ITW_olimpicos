@@ -1,4 +1,4 @@
-function ComoetitionDetailsViewModel() {
+function CompetitionDetailsViewModel() {
     var self = this;
 
     // Propriedades observáveis para armazenar os detalhes do desporto
