@@ -1,26 +1,25 @@
-function CoachDetailsViewModel() {
+function TechnicalOfficialsDetailsViewModel() {
     var self = this;
 
-    // Propriedades observáveis para armazenar os detalhes do coach
+    // Propriedades observáveis para armazenar os detalhes do oficial técnico
     self.Id = ko.observable();
     self.Name = ko.observable();
     self.Sex = ko.observable();
     self.BirthDate = ko.observable();
     self.Function = ko.observable();
     self.Photo = ko.observable();
-    self.Country_code = ko.observable();
-    self.Country = ko.observable();
     self.Url = ko.observable();
-    self.Sports = ko.observableArray([]);
-    self.SportName = ko.observable();
+    self.Organisation = ko.observable();
+    self.OrganisationCode = ko.observable();
+    self.Sports = ko.observable();
 
     // Função para buscar os detalhes do atleta
-    self.loadCoachDetails = function () {
+    self.loadTechnicalOfficialDetails = function () {
         const params = new URLSearchParams(window.location.search);
-        const coachId = params.get('id');
+        const technicalOfficialId = params.get('id');
 
-        if (coachId) {
-            fetch(`http://192.168.160.58/Paris2024/api/coaches/${coachId}`, {
+        if (technicalOfficialId) {
+            fetch(`http://192.168.160.58/Paris2024/api/Technical_officials/${technicalOfficialId}`, {
                 method: "GET"
             })
                 .then(response => {
@@ -37,12 +36,10 @@ function CoachDetailsViewModel() {
                     self.BirthDate(data.BirthDate) || 'unknown';
                     self.Function(data.Function) || 'unknown';
                     self.Photo(data.Photo) || 'unknown';
-                    self.Country_code(data.Country_code) || 'unknown';
-                    self.Country(data.Country) || 'unknown';
-                    self.Url(data.URL) || 'unknown';
+                    self.Url(data.Url) || 'unknown';
+                    self.Organisation(data.Organisation) || 'unknown';
+                    self.OrganisationCode(data.OrganisationCode) || 'unknown';
                     self.Sports(data.Sports) || 'unknown';
-                    // gets the name of the sport
-                    self.SportName(data.Sports[0].Name) || 'unknown';
                 })
                 .catch(error => {
                     console.error('Houve um problema com a operação de fetch:', error);
@@ -52,14 +49,8 @@ function CoachDetailsViewModel() {
 }
 
 // Aplica o Knockout.js bindings
-const coachDetailsViewModel = new CoachDetailsViewModel();
-ko.applyBindings(coachDetailsViewModel);
+const technicalOfficialsDetailsViewModel = new TechnicalOfficialsDetailsViewModel();
+ko.applyBindings(technicalOfficialsDetailsViewModel);
 
 // Carrega os detalhes do atleta ao iniciar a página
-coachDetailsViewModel.loadCoachDetails();
-
-
-
-
-
-
+technicalOfficialsDetailsViewModel.loadTechnicalOfficialDetails();
