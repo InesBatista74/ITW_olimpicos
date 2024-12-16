@@ -90,7 +90,7 @@
             <h2 data-bind="text:displayName"></h2>
             <div class="d-flex align-items-center gap-2">
                 <div class="form-floating">
-                    <select class="form-select" id="sport_code" name="sport_code">
+                    <select class="form-select" id="sport_code" name="sport_code" data-bind="value: sportCode">
                         <option>--Choose a competition--</option>
                         <option value="ARC">Archery</option>
                         <option value="ATH">Athletics</option>
@@ -202,7 +202,7 @@
                     <td class="align-middle" data-bind="text:Tag"></td>
                     <td class="text-end">
                         <a class="btn btn-default btn-light btn-xs"
-                            data-bind="attr: { href:'./athleteDetails.html?id=' + SportId }"><i class="fa fa-eye"
+                            data-bind="attr: { href:'./competitionDetails.html?id=' + SportId }"><i class="fa fa-eye"
                                 title="Show details"></i></a>
                         <button class="btn btn-default btn-xs"><i class="fa fa-heart-o"
                                 data-bind="attr : { 'id': 'favourite_' + SportId }" title="Add to favorites"></i></button>
@@ -257,5 +257,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--JS script for competitions-->
     <script src="competitions.js"></script>
+    <script>
+        $('document').ready(function () {
+            $(".toast").toast('show');
+
+            $("#sport_code").change(function () {
+                $('form').submit();
+            });
+
+        }); 
+
+    </script>
 </body>
 </html>

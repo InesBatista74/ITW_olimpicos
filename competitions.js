@@ -8,11 +8,14 @@ var vm = function () {
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.competitions = ko.observableArray([]);
+    self.sports = ko.observableArray([]); // Lista de desportos
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(329);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.sportCode = ko.observable(''); // Armazena o código do esporte selecionado
+
 
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
@@ -43,22 +46,41 @@ var vm = function () {
         return list;
     };
 
-    // page events
-    self.activate = function (id) {
+    // Função para carregar competições, com filtro opcional pelo SportId
+    self.activate = function (page, sportCode = '') {
         console.log('CALL: getCompetitions...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        var composedUri = self.baseUri() + "?page=" + page + "&pageSize=" + self.pagesize();
+        if (sportCode) {
+            composedUri += "&sportCode=" + sportCode; // Adiciona o filtro de esporte
+        }
+        showLoading();
         ajaxHelper(composedUri, 'GET').done(function (data) {
-            console.log(data);
+            console.log("Data received:", data);
             hideLoading();
             self.competitions(data.Competitions);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalCompetitions);
         });
     };
+    
+    // Função para carregar os desportos disponíveis
+    self.loadSports = function () {
+        console.log('CALL: getSports...');
+        var sportsUri = self.baseUri() + "/Sports"; // Presume que existe uma rota para obter desportos
+        ajaxHelper(sportsUri, 'GET').done(function (data) {
+            console.log(data);
+            self.sports(data); // Supondo que a API retorna uma lista de desportos
+        });
+    };
+
+
+    self.sportCode.subscribe(function (newSportCode) {
+        console.log("Sport code changed:", newSportCode);
+        self.activate(1, newSportCode); // Passa o código do esporte para a função de carregamento
+    });
+    
 
     // internal funcs
     function ajaxHelper(uri, method, data) {
@@ -113,6 +135,7 @@ var vm = function () {
 
     // start
     showLoading();
+    self.loadSports(); // Carrega os desportos
     var pg = getUrlParameter('page');
     console.log(pg);
     if (pg == undefined)
@@ -130,7 +153,8 @@ $(document).ready(function () {
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-})
+});
+
 
 
 
