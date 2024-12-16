@@ -12,23 +12,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="navbar.css">
     <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
-    <link rel="stylesheet" href="technical_officialsDetails.css">
+    <!--keeping this CSS import to not just have useless duplicate CSS files lying around-->
+    <link rel="stylesheet" href="athleteDetails.css">
 </head>
 
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png" height="37" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png"
+                    height="37" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" style="color:dimgray">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:dimgray">
                             <i class="fa-solid fa-person" style="color: brown"></i> Participants
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -39,22 +42,24 @@
                                 <i class="fa-solid fa-stopwatch-20" style="color: blueviolet"></i> Coaches
                             </a>
                             <a class="dropdown-item" style="color: dimgray" href="referees.html">
-                                <i class="fa-solid fa-user" style="color: blue"></i>  Referees
+                                <i class="fa-solid fa-user" style="color: blue"></i> Referees
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html" id="compcolor"><i
-                                class="fa fa-trophy text-warning"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html" id="countrycolor"><i
-                                class=" fa fa-flag" style="color: pink;"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"
+                            id="compcolor"><i class="fa fa-trophy text-warning"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"
+                            id="countrycolor"><i class=" fa fa-flag" style="color: pink;"></i> Countries</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="games.html" id="gamecolor"><i
                                 class="fa fa-map-marker text-success"></i> Games</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="sports.html" id="modcolor"><i
                                 class="fa-solid fa-football" style="color: orange;"></i> Sports</a></li>
-                                <li class="nav-item"><a class="nav-link" aria-current="page" href="tocha_olímpica.html" id="modcolor"><i class="fa-solid fa-location-pin" style="color: red;"></i> Tocha Olímpica</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="tocha_olímpica.html"
+                            id="modcolor"><i class="fa-solid fa-location-pin" style="color: red;"></i> Tocha
+                            Olímpica</a></li>
                     <li class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bars"></i> More
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -65,10 +70,10 @@
                                 <i class="fa-solid fa-puzzle-piece"></i> Broken Records
                             </a>
                             <a class="dropdown-item" style="color: dimgray" href="venues.html">
-                                <i class="fa-solid fa-hotel"></i>  Venues
+                                <i class="fa-solid fa-hotel"></i> Venues
                             </a>
                             <a class="dropdown-item" style="color: red" href="liveEvents.html">
-                                <i class="fa-solid fa-circle" style="color: red"></i>  Watch it all
+                                <i class="fa-solid fa-circle" style="color: red"></i> Watch it all
                             </a>
                         </div>
                     </li>
@@ -76,9 +81,9 @@
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="favourites.html"><i
                             class="fa fa-heart text-danger me-3"></i>&nbsp</a></div>
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="grafico_bronze.html"><i
-                     class="fa-solid fa-chart-column text-primary me-3"></i></i>&nbsp</a></div>
+                            class="fa-solid fa-chart-column text-primary me-3"></i></i>&nbsp</a></div>
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
-                     class="fa-solid fa-shop"></i>&nbsp</a></div>
+                            class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
     </nav>
@@ -92,24 +97,25 @@
                 <a href="referees.html" class="btn btn-secondary">
                     <i class="fa-solid fa-list" style="color: white;"></i>
                 </a>
-            </div>            
+            </div>
         </div>
     </div>
 
-    <!-- Athlete Details -->
+    <!-- technical official details -->
     <div class="container my-4">
         <hr style="margin-bottom: 46px;">
         <div class="row g-4">
-            <!-- Athlete Photo -->
+            <!-- technical official photo -->
             <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-body d-flex justify-content-center">
-                        <img data-bind="attr: { src: Photo, alt: Name }" class="technical_officials-photo" />
+                        <!--class is athlete-photo because this uses athleteDetails.css, check import for more info-->
+                        <img data-bind="attr: { src: Photo, alt: Name }" class="athlete-photo" />
                     </div>
                 </div>
             </div>
 
-            <!-- Athlete Info -->
+            <!-- technical official info -->
             <div class="col-12 col-md-8">
                 <div class="card">
                     <div class="card-header">Technical Official Details</div>
@@ -121,16 +127,8 @@
                                     <td data-bind="text: Name"></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Category </th>
-                                    <td data-bind="text: Category"></td>
-                                </tr>
-                                <tr>
                                     <th scope="row">Sex </th>
                                     <td data-bind="text: Sex"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Function </th>
-                                    <td data-bind="text: Function"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Birth Date </th>
@@ -139,6 +137,14 @@
                                 <tr>
                                     <th scope="row">Organisation </th>
                                     <td data-bind="text: Organisation"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Function </th>
+                                    <td data-bind="text: Function"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Sports </th>
+                                    <td data-bind="text: Sports"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -153,7 +159,8 @@
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
             <div class="navbar-text d-flex align-items-center">
-                &copy; Projeto ITW-<a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
+                &copy; Projeto ITW-<a href="about_us.html" style="color: inherit; text-decoration: none;">Inês
+                    Batista/Guilherme Martins</a>
                 <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
                     <i class="fa-brands fa-github" style="color: black;"></i>
                 </a>
@@ -172,7 +179,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-    <script src="technical_officialsDetails.html"></script>
+    <script src="refereesDetails.js"></script>
 </body>
 
 </html>
