@@ -43,6 +43,66 @@ var vm = function () {
         return list;
     };
 
+    self.favorites = ko.observableArray(JSON.parse(localStorage.getItem('favorites')) || []);
+    self.filterOption = ko.observable('all');
+
+    self.filteredAthletes = ko.computed(function () {
+        if (self.filterOption() === 'favorites') {
+            return self.athletes().filter(function (athlete) {
+                return self.isFavorite(athlete);
+            });
+        }
+        return self.athletes();
+    });
+    self.isFavorite = function (athlete) {
+        return self.favorites().some(function (fav) {
+            return fav.Id === athlete.Id;
+        });
+    };
+    self.toggleFavorite = function (athlete) {
+        var favorites = self.favorites();
+        var athleteIndex = favorites.findIndex(function (fav) {
+            return fav.Id === athlete.Id;
+        });
+    
+        if (athleteIndex === -1) {
+            favorites.push(athlete);
+        } else {
+            favorites.splice(athleteIndex, 1);
+        }
+    
+        self.favorites(favorites);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+        // Adicionar o atleta à página de favoritos
+        updateFavouritesTable();
+    
+        // Se quiser redirecionar para a página de favoritos após a ação
+        // window.location.href = 'athletesFAV.html';
+    };
+
+
+
+
+    function updateFavouritesTable() {
+        var favourites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var tableBody = $('#table-favourites');
+        tableBody.empty(); // Limpar tabela
+    
+        favourites.forEach(function(athlete) {
+            var row = `<tr>
+                <td>${athlete.Id}</td>
+                <td>${athlete.Name}</td>
+                <td>${athlete.Sex}</td>
+                <td><img src="${athlete.PhotoUrl || 'default.jpg'}" alt="${athlete.Name}" style="width: 50px; height: auto;"></td>
+                <td><a href="./athleteDetails.html?id=${athlete.Id}" class="btn btn-light btn-xs"><i class="fa-solid fa-person" title="Show details"></i></a></td>
+            </tr>`;
+            tableBody.append(row);
+        });
+    }
+    
+    
+
 
 
 

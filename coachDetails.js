@@ -36,7 +36,7 @@ function CoachDetailsViewModel() {
                     self.Sex(data.Sex) || 'unknown';
                     self.BirthDate(data.BirthDate) || 'unknown';
                     self.Function(data.Function) || 'unknown';
-                    self.Photo(data.Photo) || 'unknown';
+                    self.Photo(data.Photo) || 'images/perfil.jpg';
                     self.Country_code(data.Country_code) || 'unknown';
                     self.Country(data.Country) || 'unknown';
                     self.Url(data.URL) || 'unknown';
