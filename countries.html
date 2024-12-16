@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <!-- ko if:records().length > 0 -->
+        <!-- ko if:nocs().length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
@@ -120,16 +120,13 @@
         <!-- /ko -->
 
         <div class="container">
-            <div class="row justify-content-center" data-bind="foreach: records">
+            <div class="row justify-content-center" data-bind="foreach: nocs">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2 card cardbig p-3 m-3 text-center">
-                    <img class="img-thumbnail" style="height: 100px; width: 200px" data-bind="attr:{src: Flag}"><br />
-                    <p data-bind="text: Name"></p>
-                    <p data-bind="text: IOC"></p>
+                    <img class="img-thumbnail" style="height: 100px; width: 200px" data-bind="attr:{src: Photo}"><br />
+                    <p data-bind="text: Country"></p>
+                    <p data-bind="text: Id"></p>
                     <div class="col-12">
-                        <a class="btn btn-primary" data-bind="attr: { href:'./countryDetails.html?id=' + Id }">More details</a>
-                        <button class="btn btn-default btn-outline-danger btn-sm btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
-                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
-                        </button>
+                        <a class="btn btn-primary" data-bind="attr: { href:'./countriesDetails.html?id=' + Id }">More details</a>
                     </div>
                 </div>
             </div>

@@ -1,19 +1,19 @@
 // ViewModel KnockOut
 var vm = function () {
-    console.log('ViewModel initiated...');
-    //---Variáveis locais
+    console.log('ViewModel has been initiated.');
+    // local vars (set as ko observables)
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/countries');
-    //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Countries List';
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/NOCs');
+    self.displayName = 'Paris2024 Countries List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.records = ko.observableArray([]);
+    self.nocs = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -41,51 +41,28 @@ var vm = function () {
         for (var i = 1; i <= size; i++)
             list.push(i + step);
         return list;
-    };
-    self.toggleFavourite = function (id) {
-        if (self.favourites.indexOf(id) == -1) {
-            self.favourites.push(id);
-        }
-        else {
-            self.favourites.remove(id);
-        }
-        localStorage.setItem("fav2", JSON.stringify(self.favourites()));
-    };
-    self.SetFavourites = function () {
-        let storage;
-        try {
-            storage = JSON.parse(localStorage.getItem("fav2"));
-        }
-        catch (e) {
-            ;
-        }
-        if (Array.isArray(storage)) {
-            self.favourites(storage);
-        }
-    }
-    self.favourites = ko.observableArray([]);
+    };  
 
-    //--- Page Events
+    // page events
     self.activate = function (id) {
-        console.log('CALL: getCountries...');
+        console.log('CALL: getCoaches...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.records(data.Records);
+            self.nocs(data.NOCs);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalRecords);
-            self.SetFavourites();
+            self.totalRecords(data.TotalNOCs);
         });
     };
 
-    //--- Internal functions
+    // internal funcs
     function ajaxHelper(uri, method, data) {
-        self.error(''); // Clear error message
+        self.error(''); // clears the error msg
         return $.ajax({
             type: method,
             url: uri,
@@ -102,6 +79,8 @@ var vm = function () {
 
     function sleep(milliseconds) {
         const start = Date.now();
+        // the while loop (empty) will run for the desired duration
+        // essentially fullfilling the role of a sleep function 
         while (Date.now() - start < milliseconds);
     }
 
@@ -132,7 +111,7 @@ var vm = function () {
         }
     };
 
-    //--- start ....
+    // start
     showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);
@@ -145,7 +124,7 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    console.log("o bacalhau está no forno!");
+    console.log("ready!");
     ko.applyBindings(new vm());
 });
 
