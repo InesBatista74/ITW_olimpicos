@@ -102,3 +102,9 @@ ko.applyBindings(athleteDetailsViewModel);
 
 // Carrega os detalhes do atleta ao iniciar a página
 athleteDetailsViewModel.loadAthleteDetails();
+
+
+
+
+
+

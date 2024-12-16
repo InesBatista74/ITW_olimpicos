@@ -1,20 +1,21 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Events</title>
-    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - Olympics - Medals Statistics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
-    <link rel="stylesheet" href="HomePage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="navbar.css">
+    <style>
+    </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -81,44 +82,42 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
-        <div class="border-bottom py-2 mb-3">
-            <h2>Watch it all here</h2>
-        </div>
-        <div class="container bg-light mt-4 border rounded" style="padding:65px">
-            <div class="row text-center">
-                <div class="col-12 col-md-6 col-lg-4 mb-4 mt-2">
-                    <iframe height="190" width="337" src="https://www.youtube.com/embed/oruYvJx_0vQ?si=g_k86Hkch74BfMJ_" title="HISTORY MADE FOR PORTUGAL 🇵🇹 | Men's Madison Final - Gold | #Paris2024 #Olympics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Working Area -->
+    <div class="container my-xs-4m mt-4">
+        <div class="border-bottom py-2 mb-2 d-flex">
+            <h2>Statistics - Medals </h2>
+            <div class="dropdown btn">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color:chocolate">
+                    <i></i> Bronze
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item text-warning" href="grafico_ouro.html">
+                        <i class="fa fa-trophy " aria-hidden="true"></i> Gold
+                    </a>
+                    <a class="dropdown-item" style="color:dimgray" href="grafico_prata.html">
+                        <i class="fa fa-trophy aria-hidden=" true"></i> Silver
+                    </a>
+                    <a class="dropdown-item" style="color:chocolate" href="grafico_bronze.html">
+                        <i class="fa fa-trophy" aria-hidden="true"></i> Bronze
+                    </a>
+                    <a class="dropdown-item text-primary" href="total.html">
+                        <i class="fa fa-trophy" aria-hidden="true"></i> Total
+                    </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-4 mt-2">
-                    <iframe width="337" height="190" src="https://www.youtube.com/embed/WxEBegLmRuw?si=kiXlfWi17eWGB9Nb" title="Italy's STUNNING performance in the Artistic Swimming team event 🇮🇹😍 | #Paris2024 #Olympics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-4 mt-2">
-                    <iframe width="337" height="190" src="https://www.youtube.com/embed/whUx-5mbLl0?si=TnjVdrAshBJqkJVE" title="Japan win breakdancing gold at the Paris Olympics 🇯🇵 | #Paris2024 #Olympics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="row text-center mt-4">
-                <div class="col-12 col-md-6 col-lg-4 mb-2 mt-4">
-                    <iframe width="337" height="190" src="https://www.youtube.com/embed/QIidMU9L9RU?si=nCWkXi96ZNWG6jXL" title="THRILLING HOME VICTORY FOR FRANCE 🥇 | Women's Triathlon Highlights #Paris2024 🇫🇷" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-2 mt-4">
-                    <iframe height="190" width="337" src="https://www.youtube.com/embed/A8d9KznHehc?si=CBLbvWCpef9-wMaX" title="Ukraine win SENSATIONAL Gold Medal in Women's Fencing Team Sabre 🥇🇺🇦 #Paris2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-2 mt-4">
-                    <iframe width="337" height="190" src="https://www.youtube.com/embed/bWNKVCpsO_s?si=Ll-H9GEbz2yZB0SR" title="Greece's Miltiadis Tentoglou retains his Olympic title in the men's long jump 🇬🇷 | #Paris2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="text-center mt-2">
-                <a class="btn btn-primary mt-4" href="https://www.youtube.com/@Olympics/streams">See more</a>
             </div>
         </div>
     </div>
+    <div class="chart-container justify-content-center bg-light mt-4 border rounded"
+        style="margin-left:110px; position: relative; padding:10px; height:380vh; width:85vw">
+        <canvas class="mt-4" style="height:6000px; width:2900px" id="myChart"></canvas>
+    </div>
+    <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light" id="footer">
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
             <div class="navbar-text d-flex align-items-center">
-                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês
-                    Batista/Guilherme Martins</a>
+                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
                 <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
                     <i class="fa-brands fa-github" style="color: black;"></i>
                 </a>
@@ -132,6 +131,97 @@
             </div>
         </div>
     </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Função para buscar as medalhas de bronze da API
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.160.58/Paris2024/api/Medals',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data, status, xhr) {
+    
+                // Filtrando medalhas de bronze
+                var bronzeMedals = [];
+                data.Medals.forEach(element => {
+                    if (element.MedalName === "Bronze Medal") {  // Verifica o nome exato da medalha
+                        bronzeMedals.push(element);
+                    }
+                });
+    
+                // Contando as medalhas por país
+                var countryMedals = {};
+                bronzeMedals.forEach(medal => {
+                    var country = medal.CountryName;
+                    if (countryMedals[country]) {
+                        countryMedals[country]++;
+                    } else {
+                        countryMedals[country] = 1;
+                    }
+                });
+    
+                // Preparando os dados para o gráfico
+                var countries = Object.keys(countryMedals);
+                var medalCounts = countries.map(country => countryMedals[country]);
+    
+                // Chama a função para desenhar o gráfico
+                createHorizontalBarGraph(countries, medalCounts);
+            },
+            error: function (xhr, status, error) {
+                console.error("Erro ao obter dados da API: ", error);
+            }
+        });
+    
+        // Função para criar o gráfico de barras horizontais com altura mínima e sem espaçamento
+        function createHorizontalBarGraph(countries, medalCounts) {
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: 'bar', // Gráfico de barras horizontais
+            data: {
+                labels: countries, // Países
+                datasets: [{
+                    label: 'Número de Medalhas de Bronze',
+                    data: medalCounts, // Quantidade de medalhas
+                    backgroundColor: 'rgba(179, 59, 0, 0.7)', // Cor das barras (bronze)
+                    borderColor: 'rgb(179, 59, 0)', // Cor da borda
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Gráfico horizontal
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                    },
+                    y: {
+                        categoryPercentage: 1.0, // Remove o espaçamento entre categorias
+                        barPercentage: 1.0,      // Faz as barras ocuparem todo o espaço disponível
+                        ticks: {
+                            autoSkip: false, // Garante que todos os países apareçam
+                        }
+                    }
+                }
+            }
+        });
+    }
+    </script>
+    
+    
+    
+
 </body>
+
 </html>
