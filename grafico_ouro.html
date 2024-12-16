@@ -1,21 +1,18 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW - Olympics - Medals Statistics</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Medalhas Totais</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="navbar.css">
-    <style>
-    </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -82,13 +79,12 @@
             </div>
         </div>
     </nav>
-    <!-- Working Area -->
     <div class="container my-xs-4m mt-4">
         <div class="border-bottom py-2 mb-2 d-flex">
-            <h2>Statistics - Medals </h2>
+            <h2>Statistics - Medals by the TOP25 </h2>
             <div class="dropdown btn">
-                <button class="btn dropdown-toggle text-warning" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" >
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: gold">
                     <i></i> Gold
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -108,11 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="chart-container justify-content-center bg-light mt-4 border rounded"
-        style="margin-left:110px; position: relative; padding:10px; height:380vh; width:85vw">
-        <canvas class="mt-4" style="height:6000px; width:2900px" id="myChart"></canvas>
-    </div>
-    <!-- End of Working Area -->
+    <canvas id="medalsChart" width="400" height="200" style="margin-top:40px; margin-left: 30px; margin-right: 90px; margin-bottom: 30px;"></canvas>
     <nav class="navbar navbar-light bg-light" id="footer">
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
@@ -136,92 +128,59 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Função para buscar as medalhas de bronze da API
-        $.ajax({
-            type: 'GET',
-            url: 'http://192.168.160.58/Paris2024/api/Medals',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            success: function (data, status, xhr) {
+        // Link da API (substitua pelo URL correto)
+        const apiUrl = "http://192.168.160.58/Paris2024/api/Medals/Top25";
     
-                // Filtrando medalhas de bronze
-                var bronzeMedals = [];
-                data.Medals.forEach(element => {
-                    if (element.MedalName === "Gold Medal") {  // Verifica o nome exato da medalha
-                        bronzeMedals.push(element);
-                    }
-                });
-    
-                // Contando as medalhas por país
-                var countryMedals = {};
-                bronzeMedals.forEach(medal => {
-                    var country = medal.CountryName;
-                    if (countryMedals[country]) {
-                        countryMedals[country]++;
-                    } else {
-                        countryMedals[country] = 1;
-                    }
-                });
-    
-                // Preparando os dados para o gráfico
-                var countries = Object.keys(countryMedals);
-                var medalCounts = countries.map(country => countryMedals[country]);
-    
-                // Chama a função para desenhar o gráfico
-                createHorizontalBarGraph(countries, medalCounts);
-            },
-            error: function (xhr, status, error) {
-                console.error("Erro ao obter dados da API: ", error);
+        // Função para buscar dados da API
+        async function fetchData() {
+          try {
+            const response = await fetch(apiUrl); // Faz a requisição
+            if (!response.ok) {
+              throw new Error(`Erro na API: ${response.statusText}`);
             }
-        });
+            const data = await response.json(); // Converte para JSON
+            return data; // Retorna os dados
+          } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+            return []; // Retorna array vazio em caso de erro
+          }
+        }
     
-        // Função para criar o gráfico de barras horizontais com altura mínima e sem espaçamento
-        function createHorizontalBarGraph(countries, medalCounts) {
-        var ctx = document.getElementById("myChart").getContext("2d");
-
-        new Chart(ctx, {
-            type: 'bar', // Gráfico de barras horizontais
+        // Função para renderizar o gráfico
+        async function renderChart() {
+          const apiData = await fetchData(); // Busca os dados da API
+    
+          // Extraindo nomes e número de medalhas
+          const names = apiData.map(player => player.Name);
+          const Gold = apiData.map(player => player.Gold);
+    
+          // Configurando o gráfico
+          const ctx = document.getElementById('medalsChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico
             data: {
-                labels: countries, // Países
-                datasets: [{
-                    label: 'Number of gold medals by country',
-                    data: medalCounts, // Quantidade de medalhas
-                    backgroundColor: ["rgba(255, 205, 86, 0.5)", "rgba(255, 205, 86, 1)"],
-                    borderColor: ['rgb(230, 191, 0)', 'rgb(230, 191, 0)',],
-                    borderWidth: 1,
-                }]
+              labels: names, // Nomes dos jogadores
+              datasets: [{
+                label: 'Total number of Gold medals on the 24 Olympics',
+                data: Gold, // Dados das medalhas
+                backgroundColor: ["rgba(255, 205, 86, 0.5)", "rgba(255, 205, 86, 1)"],
+                borderColor: ['rgb(230, 191, 0)', 'rgb(230, 191, 0)',],
+                borderWidth: 1
+              }]
             },
             options: {
-                indexAxis: 'y', // Gráfico horizontal
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                    },
-                    y: {
-                        categoryPercentage: 1.0, // Remove o espaçamento entre categorias
-                        barPercentage: 1.0,      // Faz as barras ocuparem todo o espaço disponível
-                        ticks: {
-                            autoSkip: false, // Garante que todos os países apareçam
-                        }
-                    }
+              indexAxis: 'y', // Gráfico de barras horizontal
+              scales: {
+                x: {
+                  beginAtZero: true // Iniciar no zero
                 }
+              }
             }
-        });
-    }
-    </script>
+          });
+        }
     
-    
-    
-
-</body>
-
-</html>
+        // Chama a função para renderizar o gráfico ao carregar a página
+        renderChart();
+      </script>
+    </body>
+    </html>
