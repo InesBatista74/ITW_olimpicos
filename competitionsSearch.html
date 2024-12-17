@@ -96,7 +96,7 @@
         <div class="border-bottom py-2 mb-2 d-flex align-items-center justify-content-between">
             <h2 data-bind="text:displayName" class="mb-0"></h2>
             <!-- sends to the search page -->
-            <a href="coaches.html" class="btn btn-primary btn-sm">
+            <a href="competitions.html" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-table-cells-large"></i>
             </a>
         </div>
@@ -121,7 +121,6 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Tag</th>
-                    <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: competitions">
@@ -130,11 +129,6 @@
                     <td class="align-middle" data-bind="text:SportId"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
                     <td class="align-middle" data-bind="text:Tag"></td>
-                    <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs"
-                            data-bind="attr: { href:'./competitionDetails.html?id=' + SportId }"><i class="fa fa-eye"
-                                title="Show details"></i></a>
-                    </td>
                 </tr>
             </tbody>
         </table>
