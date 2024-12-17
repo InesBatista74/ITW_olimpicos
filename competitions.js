@@ -14,9 +14,8 @@ var vm = function () {
     self.totalRecords = ko.observable(329);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.totalPages = ko.observable(0);
     self.sportCode = ko.observable(''); // Armazena o código do desporto selecionado
-    
-
 
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
@@ -30,7 +29,7 @@ var vm = function () {
     self.toRecord = ko.computed(function () {
         return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
     }, self);
-    self.totalPages = ko.observable(0);
+    
     self.pageArray = function () {
         var list = [];
         var size = Math.min(self.totalPages(), 9);
@@ -46,6 +45,11 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
+
+    self.totalPages = ko.computed(function () {
+        return Math.ceil(self.totalRecords() / self.pagesize());
+    });
+
 
     // Função para carregar competições, com filtro opcional pelo SportId
     self.activate = function (page, sportCode = '') {
@@ -63,6 +67,8 @@ var vm = function () {
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.totalRecords(data.TotalCompetitions);
+            console.log("total pages: " + self.totalPages);
+            console.log("total comps: " + data.TotalCompetitions);
         });
     };
     
