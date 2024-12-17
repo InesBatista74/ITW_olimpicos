@@ -1,5 +1,1 @@
-Projeto Final de ITW
-
-
-
-Dos dados apenas são carregados com acesso à rede ua -- IB/GM
+Projeto Final de ITW -- (Os dados apenas são carregados com acesso à rede ua) 
