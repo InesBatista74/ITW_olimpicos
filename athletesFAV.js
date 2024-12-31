@@ -27,6 +27,21 @@ $(document).ready(function () {
         }
     }
 
+
+    function removeFav(Id) {
+        console.log("remove fav")
+        $("#fav-" + Id).remove();
+    
+        let fav = JSON.parse(localStorage.fav || '[]');
+    
+        const index = fav.indexOf(Id);
+    
+        if (index != -1)
+            fav.splice(index, 1);
+    
+        localStorage.setItem("fav", JSON.stringify(fav));
+    }
+
     // Atualizar a tabela de favoritos ao carregar a página
     updateFavouritesTable();
 });
