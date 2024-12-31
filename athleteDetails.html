@@ -129,7 +129,9 @@
             <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-body d-flex justify-content-center">
-                        <img data-bind="attr: { src: Photo, alt: Name }" class="athlete-photo" />
+                        <img data-bind="attr: { src: Photo, alt: Name }" class="img-fluid img-bordered"
+                    style="width: 100%; height: auto; max-width: 315px;"
+                    onerror="this.onerror=null; this.src='imagemDefault.png';" />
                     </div>
                 </div>
             </div>

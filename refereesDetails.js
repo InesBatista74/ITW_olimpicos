@@ -35,7 +35,8 @@ function TechnicalOfficialsDetailsViewModel() {
                     self.Sex(data.Sex) || 'unknown';
                     self.BirthDate(data.BirthDate) || 'unknown';
                     self.Function(data.Function) || 'unknown';
-                    self.Photo(data.Photo) || 'unknown';
+                    const photoUrl = data.Photo || 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png';
+                    self.Photo(photoUrl);
                     self.Url(data.Url) || 'unknown';
                     self.Organisation(data.Organisation) || 'unknown';
                     self.OrganisationCode(data.OrganisationCode) || 'unknown';
