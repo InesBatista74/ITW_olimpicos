@@ -57,10 +57,10 @@
                                 <i class="fa-solid fa-basketball" style="color: #ebc7ed;"></i> Basketball
                             </a>
                             <a class="dropdown-item" style="color: dimgray" href="canoesprings.html">
-                                <i class="fa-solid fa-puzzle-piece" style="color: #e79deb;"></i> Canoe Springs 
+                                <i class="fa-solid fa-sailboat" style="color: #e79deb;"></i> Canoe Springs 
                             </a>
                             <a class="dropdown-item" style="color: dimgray" href="cyclingtracks.html">
-                                <i class="fa-solid fa-sailboat" style="color: #e575eb;"></i>  Cycling Tracks
+                                <i class="fa-solid fa-bicycle" style="color: #e575eb;"></i>  Cycling Tracks
                             </a>
                             <a class="dropdown-item" style="color: dimgray" href="football.html">
                                 <i class="fa-regular fa-futbol" style="color: #b640bd;"></i>  Football
@@ -104,31 +104,52 @@
         </div>
     </nav>
     <!-- Working Area -->
-    <div class="container mt-4">
-        <h1>Swimming - Paris 2024</h1>
-        <!-- Dropdown to select Event -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <select class="form-select" id="eventDropdown">
-                    <option value="">Loading events...</option>
-                </select>
+    <div class="container bannerTop">
+        <div class="border-bottom pt-4 pb-2 mb-3">
+            <div class="row flex">
+                <div class="col-md-8 d-flex align-items-center">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-person-swimming" style="color: #9918a1;"></i>
+                        <span class="ms-2">Swimming</span>
+                    </h2>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-start">
+                    <div class="me-3">
+                        <label for="eventSelect" class="form-label" style="white-space: nowrap;">Choose an event: </label>
+                        <select id="eventSelect" class="form-select" data-bind="options: events, optionsText: 'EventName', optionsValue: 'EventId', value: selectedEventId"></select>
+                    </div>
+                    <div>
+                        <label for="stageSelect" class="form-label" style="white-space: nowrap;">Choose a fase: </label>
+                        <select id="stageSelect" class="form-select" data-bind="options: stages, optionsText: 'StageName', optionsValue: 'StageId', value: selectedStageId"></select>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="row small">
+            <p class="col-4 mr-auto pt-2">
+            </p>
+                        <!-- Ponto de alteração: Paginação corrigida -->
+            <div class="col-8 my-0 pt-3">
             </div>
         </div>
-
-        <!-- Table to display Stages -->
-        <table class="table table-sm small">
-            <thead class="table-secondary">
+        <table class="table table-striped table-sm small">
+            <thead>
                 <tr>
-                    <th scope="col">Tag</th>
-                    <th scope="col">Stage Name</th>
-                    <th scope="col" class="text-right"></th>
+                    <th>Categoria - Fase</th>
+                    <th>Sexo</th>
+                    <th>Nome do participante</th>
+                    <th>País</th>                
                 </tr>
             </thead>
-            <tbody id="stagesTableBody">
-                <!-- Rows will be dynamically generated -->
+            <tbody data-bind="foreach: results">
+                <tr>
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: Sex"></td>
+                    <td data-bind="text: ParticipantName"></td>
+                    <td data-bind="text: CountryName"></td>                
+                </tr>
             </tbody>
         </table>
-    </div>
 
 
     <!-- Modal -->

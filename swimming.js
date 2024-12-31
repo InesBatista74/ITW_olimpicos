@@ -1,60 +1,80 @@
-// Função para carregar eventos a partir da API
-function loadEvents() {
-    // URL da sua API (substitua pelo link real)
-        const apiUrl = "http://192.168.160.58/Paris2024/api/Swimmings/Events";  // Substitua com o link correto da sua API
+var vm = function () {
+  var self = this;
 
-    // Faz a solicitação à API
-    fetch(apiUrl)
-      .then(response => response.json()) // Converte a resposta para JSON
-      .then(data => {
-        const eventDropdown = document.getElementById("eventDropdown");
+  self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Swimmings/Events');
+  self.resultUri = ko.observable('http://192.168.160.58/Paris2024/api/Swimmings');
+  self.events = ko.observableArray([]);
+  self.stages = ko.observableArray([]);
+  self.results = ko.observableArray([]);
+  self.selectedEventId = ko.observable('');
+  self.selectedStageId = ko.observable('');
 
-    // Limpa o dropdown antes de preencher com novos eventos
-    eventDropdown.innerHTML = '<option value="">Select Event</option>';
-
-        // Preenche o dropdown com os eventos
-        data.forEach(event => {
-          const option = document.createElement("option");
-    option.value = event.EventId;
-    option.textContent = event.EventName;
-    eventDropdown.appendChild(option);
-        });
-
-    // Adiciona um evento para quando o usuário selecionar um evento
-    eventDropdown.addEventListener('change', function () {
-          const selectedEventId = this.value;
-          const selectedEvent = data.find(event => event.EventId === selectedEventId);
-    if (selectedEvent) {
-        displayStages(selectedEvent, selectedEventId);  // Passando o eventId junto com os estágios
+  self.activate = function () {
+      ajaxHelper(self.baseUri(), 'GET').done(function (data) {
+          self.events(data);
+          if (data.length > 0) {
+              self.selectedEventId(data[0].EventId);
           }
-        });
-      })
-      .catch(error => {
-        console.error("Erro ao carregar os eventos:", error);
+      });
+  };
+
+  self.selectedEventId.subscribe(function (newEventId) {
+      const selectedEvent = self.events().find(event => event.EventId === newEventId);
+      if (selectedEvent) {
+          self.stages(selectedEvent.Stages);
+          self.selectedStageId(selectedEvent.Stages[0]?.StageId || '');
+      } else {
+          self.stages([]);
+          self.results([]);
+      }
+  });
+
+  self.selectedStageId.subscribe(function (newStageId) {
+      if (newStageId) {
+          const eventId = self.selectedEventId();
+          const uri = `${self.resultUri()}?EventId=${eventId}&StageId=${newStageId}`;
+          ajaxHelper(uri, 'GET').done(function (data) {
+              self.results(data);
+          });
+      } else {
+          self.results([]);
+      }
+  });
+
+  function ajaxHelper(uri, method, data) {
+      return $.ajax({
+          type: method,
+          url: uri,
+          dataType: 'json',
+          contentType: 'application/json',
+          data: data ? JSON.stringify(data) : null,
+          error: function (jqXHR, textStatus, errorThrown) {
+              console.log("AJAX Call[" + uri + "] Fail...");
+              hideLoading();
+              self.error(errorThrown);
+          }
       });
   }
 
-    // Função para exibir os estágios na tabela
-    function displayStages(selectedEvent, eventId) {
-    const tableBody = document.getElementById("stagesTableBody");
-    tableBody.innerHTML = "";  // Limpa a tabela antes de adicionar as novas linhas
-
-    selectedEvent.Stages.forEach(stage => {
-      const row = `
-    <tr>
-        <td class="align-middle">${stage.StageId}</td>
-        <td class="align-middle">${stage.StageName}</td>
-        <td class="text-end">
-            <a class="btn btn-light btn-xs" href="swimming_details.html?EventId=${eventId}&StageId=${stage.StageId}">
-                <i class="fa fa-eye text-secundary"  title="View Details"></i>
-            </a>
-        </td>
-    </tr>
-    `;
-    tableBody.insertAdjacentHTML('beforeend', row);
-    });
+  function showLoading() {
+      $("#myModal").modal('show', {
+          backdrop: 'static',
+          keyboard: false
+      });
+  }
+  function hideLoading() {
+      $('#myModal').on('shown.bs.modal', function (e) {
+          $("#myModal").modal('hide');
+      })
   }
 
-    // Chama a função de carregar eventos quando a página for carregada
-    window.onload = loadEvents;
+  self.activate();
+};
 
+$(document).ready(function () {
+  ko.applyBindings(new vm());
+});
+
+$(document).ajaxComplete(function (event, xhr, options) {
+  $("#myModal").modal('hide');
+})
