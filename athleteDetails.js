@@ -62,7 +62,7 @@ function AthleteDetailsViewModel() {
                 self.BirthDate(data.BirthDate.split('T')[0]); // Formata a data
                 self.BirthPlace(data.BirthPlace|| 'unknown');
                 self.Sex(data.Sex|| 'unknown');
-                self.Photo(data.Photo|| 'imagemDefault.png');
+                self.Photo(data.Photo || 'imagemDefault.png');
                 self.Height(data.Height || 'unknown');
                 self.Weight(data.Weight|| 'unknown');
                 self.Lang(data.Lang|| 'unknown');

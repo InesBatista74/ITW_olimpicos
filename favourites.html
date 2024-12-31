@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gráfico de Medalhas Totais</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - Olympics - Favourites</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -13,6 +14,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
+    <style>
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -104,113 +107,83 @@
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
-    </nav>
+    </nav> 
+    <!-- Working Area -->
     <div class="container my-xs-4m mt-4">
-        <div class="border-bottom py-2 mb-2 d-flex">
-            <h2>Statistics - Medals by the TOP25 </h2>
-            <div class="dropdown btn">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="color: blue">
-                    <i></i> Total
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item text-warning" href="grafico_ouro.html">
-                        <i class="fa fa-trophy " aria-hidden="true"></i> Gold
-                    </a>
-                    <a class="dropdown-item" style="color:dimgray" href="grafico_prata.html">
-                        <i class="fa fa-trophy aria-hidden=" true"></i> Silver
-                    </a>
-                    <a class="dropdown-item" style="color:chocolate" href="grafico_bronze.html">
-                        <i class="fa fa-trophy" aria-hidden="true"></i> Bronze
-                    </a>
-                    <a class="dropdown-item text-primary" href="grafico_total.html">
-                        <i class="fa fa-trophy" aria-hidden="true"></i> Total
-                    </a>
-                </div>
-            </div>
+        <div class="border-bottom py-2 mb-2">
+            <h2>Favourites</h2>
         </div>
-    </div>
-    <canvas id="medalsChart" width="400" height="200" style="margin-top:40px; margin-left: 30px; margin-right: 90px; margin-bottom: 30px;"></canvas>
-    <div class="text-center mt-2" style="margin-bottom: 30px;">
-        <a class="btn btn-secondary" href="country_medals.html"><i class="fa-solid fa-globe" style="color: white;"></i></a>
-    </div>
-    <nav class="navbar navbar-light bg-light" id="footer">
-        <div class="container small d-flex justify-content-between align-items-center">
-            <!-- Texto e ícone GitHub juntos -->
-            <div class="navbar-text d-flex align-items-center">
-                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
-                <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
-                    <i class="fa-brands fa-github" style="color: black;"></i>
+        <div class="container mb-4 bg-light border rounded mt-4" style="padding:30px">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="athletesFAV.html">
+                <img src="images/favoritos/atletas.webp" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa-solid fa-person-running" style="color:darkmagenta"></i> Athletes</h5>
+                </div>
+                    </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="compFav.html">
+                <img src="images/favoritos/coaches.webp" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa-solid fa-stopwatch-20" style="color: blueviolet"></i> Coaches</h5>
+                </div>
                 </a>
             </div>
-            <!-- Universidade -->
-            <div class="navbar-nav">
-                <div class="nav-item d-flex align-items-center">
-                    <i class="fa-solid fa-school" style="margin-right: 4px; color: gray"></i>
-                    <a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
-                </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="countryFav.html">
+                    <img src="images/favoritos/referees.jpeg" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                    <div class="card-body text-center">
+                        <h5 class="card-title btn-primary"><i class="fa-solid fa-user" style="color: blue"></i> Referres and Technical Officials</h5>
+                    </div>
+                </a>
             </div>
         </div>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="gameFav.html">
+                <img src="images/favoritos/novaehe.jpg" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa fa-trophy text-warning"></i> Competitions</h5>
+                </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
+                <a class="btn" href="modFav.html">
+                <img src="images/favoritos/sports.avif" class="card-img-top justify-content-center" alt="..." style="height: 185px">
+                <div class="card-body text-center">
+                    <h5 class="card-title btn-primary"><i class="fa-solid fa-football" style="color:saddlebrown;"></i> Sports</h5>
+                </div>
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
 
-  <script>
-    // Link da API (substitua pelo URL correto)
-    const apiUrl = "http://192.168.160.58/Paris2024/api/Medals/Top25";
 
-    // Função para buscar dados da API
-    async function fetchData() {
-      try {
-        const response = await fetch(apiUrl); // Faz a requisição
-        if (!response.ok) {
-          throw new Error(`Erro na API: ${response.statusText}`);
-        }
-        const data = await response.json(); // Converte para JSON
-        return data; // Retorna os dados
-      } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-        return []; // Retorna array vazio em caso de erro
-      }
-    }
 
-    // Função para renderizar o gráfico
-    async function renderChart() {
-      const apiData = await fetchData(); // Busca os dados da API
-
-      // Extraindo nomes e número de medalhas
-      const names = apiData.map(player => player.Name);
-      const medals = apiData.map(player => player.Medals);
-
-      // Configurando o gráfico
-      const ctx = document.getElementById('medalsChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar', // Tipo de gráfico
-        data: {
-          labels: names, // Nomes dos jogadores
-          datasets: [{
-            label: 'Total number of Gold medals on the 24 Olympics',
-            data: medals, // Dados das medalhas
-            backgroundColor: ["rgba(25, 102, 255, 0.5)", "rgba(25, 102, 255, 0.8)"],
-            borderColor: ['rgb(25, 102, 255)', 'rgb(25, 102, 255)',],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          indexAxis: 'y', // Gráfico de barras horizontal
-          scales: {
-            x: {
-              beginAtZero: true // Iniciar no zero
-            }
-          }
-        }
-      });
-    }
-
-    // Chama a função para renderizar o gráfico ao carregar a página
-    renderChart();
-  </script>
+        <!-- End of Working Area -->
+        <nav class="navbar navbar-light bg-light" id="footer">
+            <div class="container small d-flex justify-content-between align-items-center">
+                <!-- Texto e ícone GitHub juntos -->
+                <div class="navbar-text d-flex align-items-center">
+                    &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
+                    <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
+                        <i class="fa-brands fa-github" style="color: black;"></i>
+                    </a>
+                </div>
+                <!-- Universidade -->
+                <div class="navbar-nav">
+                    <div class="nav-item d-flex align-items-center">
+                        <i class="fa-solid fa-school" style="margin-right: 4px; color: gray"></i>
+                        <a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
