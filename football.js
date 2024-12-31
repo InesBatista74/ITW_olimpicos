@@ -1,8 +1,8 @@
 var vm = function () {
     var self = this;
 
-    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Basketballs/Events');
-    self.resultUri = ko.observable('http://192.168.160.58/Paris2024/api/Basketballs');
+    self.baseUri = ko.observable('http://192.168.160.58/Paris2024/api/Footballs/Events');
+    self.resultUri = ko.observable('http://192.168.160.58/Paris2024/api/Footballs');
     self.events = ko.observableArray([]);
     self.stages = ko.observableArray([]);
     self.results = ko.observableArray([]);
