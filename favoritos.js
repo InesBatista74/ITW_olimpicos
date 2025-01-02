@@ -32,8 +32,6 @@ var vm = function() {
                 $('#table_a').show();
 
                 break;
-
-
             case 'Coaches':
                 self.coaches([]);
                 for(let item of fav_arr){
@@ -52,27 +50,25 @@ var vm = function() {
                 $('#table_coach').show();
 
                 break;
-
-                case 'Teams':
-                    self.teams([]);
-                    for(let item of fav_arr){
-                        if(item.team){
-                            ajaxHelper(`http://192.168.160.58/Paris2024/api/Teams/${item.team}`, 'GET').done( (data) => {
-                                console.log('Getting teams by id...');
-                                self.teams.push(data);
-                            });
-                        }
-    
-                        sleep(50);
+            case 'Teams':
+                self.teams([]);
+                for(let item of fav_arr){
+                    if(item.team){
+                        ajaxHelper(`http://192.168.160.58/Paris2024/api/Teams/${item.team}`, 'GET').done( (data) => {
+                            console.log('Getting teams by id...');
+                            self.teams.push(data);
+                        });
                     }
-    
-                    $('#table_a').hide();
-                    $('#table_coach').hide();
-                    $('#table_s').hide();
-                    $('#table_t').show();
-    
-                    break;
-            default: 
+
+                    sleep(50);
+                }
+
+                $('#table_a').hide();
+                $('#table_coach').hide();
+                $('#table_s').hide();
+                $('#table_t').show();
+
+                break;
 
         }
     };

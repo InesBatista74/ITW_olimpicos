@@ -204,6 +204,18 @@ body.dark .pagination .page-item.active .page-link {
     /* Optional: border color for active button */
 }
 
+body.dark #btn_a h2 span {
+    color: aliceblue !important;
+}
+
+body.dark #btn_coach h2 span {
+    color: aliceblue !important;
+}
+
+body.dark #btn_t h2 span {
+    color: aliceblue !important;
+}
+
 body.dark .card {
     background-color: #292c35;
 }
