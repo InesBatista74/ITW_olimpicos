@@ -340,6 +340,10 @@ body.dark .accordion-body {
     /* Light text color for the body */
 }
 
+body.dark button.btn {
+    color: aliceblue !important;
+}
+
 .checkbox {
     opacity: 0;
     position: absolute;
