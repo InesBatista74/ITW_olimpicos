@@ -10,7 +10,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="StyleSheet.css" rel="stylesheet" />
-    <link href="theme_switch.css" rel="stylesheet" />     
+    <link href="theme_switch.css" rel="stylesheet" />
+    <link rel="stylesheet" href="HomePage.css">
     
 </head>
 <body class="light-theme">
@@ -230,6 +231,29 @@
         </div>
     </nav>
 
+    <script>
+        const checkbox = document.getElementById("checkbox");
+
+        // Load the user's preference on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            const darkMode = localStorage.getItem("darkMode");
+            if (darkMode === "enabled") {
+                document.body.classList.add("dark");
+                checkbox.checked = true; // Keep the toggle in sync
+            }
+        });
+
+        // Toggle dark mode and save preference
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                document.body.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
     <!--JS for bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!--other important shtuff-->
