@@ -124,9 +124,17 @@
         </div>  
     </nav>
     
-    <div class="container my-xs-4m mt-4">
-        <div class=" row border-bottom py-2 mb-2">
-            <h2 class="col-6" data-bind="text:displayName"></h2>
+    <div class="container my-xs-4m">
+        <div class="pt-4 mb-3">
+            <div class="row d-flex align-items-center">
+                <!-- Título "Lista de Atletas" à esquerda -->
+                <div class="border-bottom py-2 mb-2 d-flex align-items-center justify-content-between">
+                    <h2 class="d-flex align-items-center">
+                        <i class=" fa fa-flag" style="color:steelblue;"></i>
+                        <span class="ms-2" style="margin-left: 5px;">National Olympic Committees - Paris 2024</span>
+                    </h2>
+                </div>
+            </div>
         </div>
         <!-- ko if:nocs().length > 0 -->
         <div class="row small">

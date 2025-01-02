@@ -133,9 +133,16 @@
 
     <!--main stuff-->
     <div class="container">
-        <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
-        </div>
+        <div class="pt-4 mb-3">
+            <div class="row d-flex align-items-center">
+                <!-- Título "Lista de Atletas" à esquerda -->
+                <div class="border-bottom py-2 mb-2 d-flex align-items-center justify-content-between">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-football" style="color:saddlebrown;"></i>
+                        <span class="ms-2" style="margin-left: 5px;">Sports - Paris 2024</span>
+                    </h2>
+                </div>
+            </div>
         <!-- ko if:sports.length > 0 -->
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
@@ -179,8 +186,9 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">URL</th>
+                    <th scope="col">Pictograma</th>
                     <th scope="col">Athletes</th>
+                    <th scope="col">Coaches</th>
                     <th scope="col">Competitions</th>
                     <th scope="col">Teams</th>
                     <th scope="col" class="text-right"></th>
@@ -190,15 +198,15 @@
                 <tr>
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
-                    <!--actually links to the website via the url-->
                     <td class="align-middle">
-                        <a data-bind="attr: { href: Sport_url }, text: 'see more...'" target="_blank"></a>
+                        <img data-bind="attr: { src: Pictogram, alt: Name, title: Name }" style="max-width: 55px; max-height: 55px;" />
                     </td>
                     <td class="align-middle" data-bind="text:Athletes"></td>
+                    <td class="align-middle" data-bind="text:Coaches"></td>
                     <td class="align-middle" data-bind="text:Competitions"></td>
                     <td class="align-middle" data-bind="text:Teams"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./sportDetails.html?id=' + Id }"><i
+                        <a class="btn btn-default btn-light btn-xs" style="margin-top: 5px;" data-bind="attr: { href:'./sportDetails.html?id=' + Id }"><i
                                 class="fa-solid fa-circle-info" title="Show details"></i></a>
                     </td>
                 </tr>
