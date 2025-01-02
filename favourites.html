@@ -1,23 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW - Olympics - Favourites</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITW 2024/25 - Paris 2024 Favoritos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
-    <style>
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="favourites.css" rel="stylesheet" />
 </head>
-<body>
+<body class="light-theme">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="HomePage.html" tabindex="Olympics"><img src="images/Logotipo.png" height="37" /></a>
@@ -110,64 +105,161 @@
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
-    </nav> 
-    <!-- Working Area -->
-    <div class="container my-xs-4m mt-4">
-        <div class="border-bottom py-2 mb-2">
-            <h2>Favourites</h2>
+    </nav>
+
+    <div class="container-lg mt-5 bannerTop">
+        <div class="row border-bottom pb-3 mb-3">
+            <div class="col-1"></div>
+            <div class="col">
+                <button type="button" class="btn w-75" value="Athletes" id="btn_a" data-bind="click: () => activate(btn_a)">
+                    <i class="fa-solid fa-person-running me-2" style="color:darkmagenta"></i> Athletes
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn w-75" value="Coaches" id="btn_coach" data-bind="click: () => activate(btn_coach)">
+                    <i class="fa-solid fa-stopwatch-20 me-2" style="color: blueviolet"></i> Coaches
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn w-75" value="Teams" id="btn_t" data-bind="click: () => activate(btn_t)">
+                    <i class="fa-solid fa-users me-2" style="color:darkblue;"></i>  Teams
+                </button>
+            </div>
+            <div class="col-1"></div>
         </div>
-        <div class="container mb-4 bg-light border rounded mt-4" style="padding:30px">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
-                <a class="btn" href="athletesFAV.html">
-                <img src="images/favoritos/atletas.webp" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
-                <div class="card-body text-center">
-                    <h5 class="card-title btn-primary"><i class="fa-solid fa-person-running" style="color:darkmagenta"></i> Athletes</h5>
+
+        <!--Athletes Table-->
+        <div class="row mt-5"  id="table_a">
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-person-running me-2" style="color:darkmagenta"></i> 
+                        <span class="ms-2">Favourite Athletes</span>
+                    </h2>
                 </div>
-                    </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
-                <a class="btn" href="coachesFAV.html">
-                <img src="images/favoritos/coaches.webp" class="card-img-top justify-content-center" alt="..." style="height: 185px;">
-                <div class="card-body text-center">
-                    <h5 class="card-title btn-primary"><i class="fa-solid fa-stopwatch-20" style="color: blueviolet"></i> Coaches</h5>
+            <table class="table table-striped table-sm small">
+                <thead class="table-secondary">
+                    <tr>
+                        <th scope="col" class="text-center">Id</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">BirthDate</th>
+                        <th scope="col" class="text-center">BirthPlace</th>
+                        <th scope="col" class="text-center">Sex</th>
+                        <th scope="col" class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: athletes">
+                    <tr>
+                        <td data-bind="text: Id" class="text-center"></td>
+                        <td data-bind="text: Name" class="text-center"></td>
+                        <td data-bind="text: BirthDate" class="text-center"></td>
+                        <td data-bind="text: BirthPlace" class="text-center"></td>
+                        <td data-bind="text: Sex" class="text-center"></td>
+                        <td data-bind="" class="align-middle">
+                            <i class="fa-solid fa-heart text-danger" data-bind="click: $parent.remove.bind($parent, Id, 'Athletes')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--Coaches Table-->
+        <div class="row mt-5" id="table_coach">
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-stopwatch-20 me-2" style="color: blueviolet"></i>
+                        <span class="ms-2">Favourite Coaches</span>
+                    </h2>
                 </div>
-                </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-3 m-3 card text-center cardbig" style="width: 20rem;">
-                <a class="btn" href="refereesFav.html">
-                    <img src="images/favoritos/referees.jpeg" class="card-img-top justify-content-center" alt="..." style="height: 185px">
-                    <div class="card-body text-center">
-                        <h5 class="card-title btn-primary"><i class="fa-solid fa-user" style="color: blue"></i> Referres and Technical Officials</h5>
-                    </div>
-                </a>
+            <table class="table table-striped table-sm small">
+                <thead class="table-secondary">
+                    <tr>
+                        <th scope="col" class="text-center">Id</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">BirthDate</th>
+                        <th scope="col" class="text-center">Function</th>
+                        <th scope="col" class="text-center">Sex</th>
+                        <th scope="col" class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: coaches">
+                    <tr>
+                        <td data-bind="text: Id" class="text-center"></td>
+                        <td data-bind="text: Name" class="text-center"></td>
+                        <td data-bind="text: BirthDate" class="text-center"></td>
+                        <td data-bind="text: Function" class="text-center"></td>
+                        <td data-bind="text: Sex" class="text-center"></td>
+                        <td data-bind="" class="align-middle">
+                            <i class="fa-solid fa-heart text-danger" data-bind="click: $parent.remove.bind($parent, Id, 'Coaches')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row mt-5" id="table_t">
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-users me-2" style="color:darkblue;"></i>
+                        <span class="ms-2">Favourite Teams</span>
+                    </h2>
+                </div>
             </div>
+            <table class="table table-striped table-sm small">
+                <thead class="table-secondary">
+                    <tr>
+                        <th scope="col" class="text-center">Id</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Sex</th>
+                        <th scope="col" class="text-center">Country</th>
+                        <th scope="col" class="text-center">Sports</th>
+                        <th scope="col" class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: teams">
+                    <tr>
+                        <td data-bind="text: Id" class="text-center"></td>
+                        <td data-bind="text: Name" class="text-center"></td>
+                        <td data-bind="text: Sex" class="text-center"></td>
+                        <td data-bind="text: NOC.Name" class="text-center"></td>
+                        <td data-bind="text: Sport.Name" class="text-center"></td>
+                        <td data-bind="" class="align-middle">
+                            <i class="fa-solid fa-heart text-danger" data-bind="click: $parent.remove.bind($parent, Id, 'Teams')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-
-
-        <!-- End of Working Area -->
-        <nav class="navbar navbar-light fixed-bottom bg-light" id="footer">
-            <div class="container small d-flex justify-content-between align-items-center">
-                <!-- Texto e ícone GitHub juntos -->
-                <div class="navbar-text d-flex align-items-center">
-                    &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
-                    <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
-                        <i class="fa-brands fa-github" style="color: black;"></i>
-                    </a>
-                </div>
-                <!-- Universidade -->
-                <div class="navbar-nav">
-                    <div class="nav-item d-flex align-items-center">
-                        <i class="fa-solid fa-school" style="margin-right: 4px; color: gray"></i>
-                        <a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
-                    </div>
+    <nav class="navbar navbar-light fixed-bottom bg-light" id="footer">
+        <div class="container small d-flex justify-content-between align-items-center">
+            <!-- Texto e ícone GitHub juntos -->
+            <div class="navbar-text d-flex align-items-center">
+                &copy; Projeto ITW - <a href="about_us.html" style="color: inherit; text-decoration: none;">Inês Batista/Guilherme Martins</a>
+                <a href="https://github.com/InesBatista74/ITW_olimpicos" class="ms-2">
+                    <i class="fa-brands fa-github" style="color: black;"></i>
+                </a>
+            </div>
+            <!-- Universidade -->
+            <div class="navbar-nav">
+                <div class="nav-item d-flex align-items-center">
+                    <i class="fa-solid fa-school" style="margin-right: 4px; color: gray"></i>
+                    <a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
                 </div>
             </div>
-        </nav>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        </div>
+    </nav>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="../theme_switch.js"></script>
+    <script src="favoritos.js"></script>
 </body>
 </html>
