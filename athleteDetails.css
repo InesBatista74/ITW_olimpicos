@@ -72,3 +72,54 @@ span {
 .navbar-brand img {
     height: 37px;
 }
+
+body.dark .no-dark,
+body.dark #welcome-section {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+body.dark .carousel-caption {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+body.dark {
+    background-color: #292c35;
+    color: aliceblue;
+}
+
+/* Navbar styling */
+body.dark .navbar {
+    background-color: #292c35 !important;
+    color: aliceblue !important;
+}
+
+body.dark .navbar a,
+body.dark .navbar button {
+    color: aliceblue !important;
+    background-color: transparent !important;
+}
+
+/* Dropdown menu styling */
+body.dark .navbar .dropdown-menu {
+    background-color: #292c35 !important;
+    border-color: #444 !important;
+}
+
+body.dark .navbar .dropdown-menu a {
+    color: aliceblue !important;
+}
+
+body.dark .navbar .dropdown-toggle {
+    color: aliceblue !important;
+}
+
+/* Footer */
+body.dark #footer {
+    background-color: #292c35 !important;
+    color: aliceblue !important;
+}
+
+body.dark .navbar-text {
+    color: aliceblue !important;
+}

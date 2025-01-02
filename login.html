@@ -12,6 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="shop.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="HomePage.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -105,6 +106,16 @@
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
+        </div>
+
+        <!--dark mode button-->
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
         </div>
     </nav>
     <!-- Login/Register Section -->
@@ -236,6 +247,29 @@
                 return false;
             }
         }
+    </script>
+    <script>
+        const checkbox = document.getElementById("checkbox");
+
+        // Load the user's preference on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            const darkMode = localStorage.getItem("darkMode");
+            if (darkMode === "enabled") {
+                document.body.classList.add("dark");
+                checkbox.checked = true; // Keep the toggle in sync
+            }
+        });
+
+        // Toggle dark mode and save preference
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                document.body.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
     </script>
 </body>
 </html>

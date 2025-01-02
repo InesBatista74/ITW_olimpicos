@@ -36,10 +36,10 @@
 }
 
 .carousel-caption {
-    z-index: 1; /* Garante que fica acima das imagens */
-    position: absolute;
-    background: rgba(0,0,0,0.7);
-    padding: 10px;
+    z-index: 1 ; /* Garante que fica acima das imagens */
+    position: absolute ;
+    background: rgba(0,0,0,0.7) ;
+    padding: 10px ;
     border-radius: 5px; /* Fixa a posição no carrossel */
 }
 
@@ -75,4 +75,296 @@
     text-align: center;
     margin: auto;
     line-height: 1.5;
+}
+
+/* working here */
+
+body.dark .no-dark,
+body.dark #welcome-section {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+body.dark .carousel-caption {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+body.dark {
+    background-color: #292c35;
+    color: aliceblue;
+}
+
+/* Navbar styling */
+body.dark .navbar {
+    background-color: #252830 !important;
+    color: aliceblue !important;
+}
+
+body.dark .navbar a,
+body.dark .navbar button {
+    color: aliceblue !important;
+    background-color: transparent !important;
+}
+
+/* Dropdown menu styling */
+body.dark .navbar .dropdown-menu {
+    background-color: #252830 !important;
+    border-color: #444 !important;
+}
+
+body.dark .navbar .dropdown-menu a {
+    color: aliceblue !important;
+}
+
+body.dark .navbar .dropdown-toggle {
+    color: aliceblue !important;
+}
+
+/* Footer */
+body.dark #footer {
+    background-color: #252830 !important;
+    color: aliceblue !important;
+}
+
+body.dark .navbar-text {
+    color: aliceblue !important;
+}
+
+body.dark {
+    background-color: #292c35 !important;
+    color: aliceblue !important;
+}
+
+
+
+/* Dark mode table styling */
+body.dark .table {
+    background-color: #1c1e24 !important;
+    color: aliceblue !important;
+}
+
+/* Table header */
+body.dark .table thead th {
+    background-color: #343a40 !important;
+    color: aliceblue !important;
+    border-color: #454d55 !important;
+}
+
+/* Table rows */
+body.dark .table tbody tr {
+    background-color: #292c35 !important;
+    color: aliceblue !important;
+}
+
+/* Odd rows (striped) */
+body.dark .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #343a40 !important;
+    color: aliceblue !important;
+    /* Ensure light text on odd rows */
+}
+
+/* Even rows (striped) */
+body.dark .table-striped tbody tr:nth-of-type(even) {
+    background-color: #292c35 !important;
+    color: aliceblue !important;
+    /* Ensure light text on even rows */
+}
+
+/* Hover effect for rows */
+body.dark .table tbody tr:hover {
+    background-color: #3a3f47 !important;
+    color: aliceblue !important;
+}
+
+body.dark .table tbody tr td {
+    background-color: #3a3f47 !important;
+    color: aliceblue !important;
+}
+
+body.dark .modal-content {
+    background-color: #3a3f47 !important;
+    color: aliceblue !important;
+}
+
+body.dark .pagination .page-link {
+    background-color: #292c35;
+    /* Dark mode background */
+    color: aliceblue;
+    /* Text color for dark mode */
+    border: 1px solid aliceblue;
+    /* Optional: define a border color */
+}
+
+body.dark .pagination .page-item.active .page-link {
+    background-color: aliceblue;
+    /* Active button background */
+    color: #292c35;
+    /* Active button text */
+    border: 1px solid aliceblue;
+    /* Optional: border color for active button */
+}
+
+body.dark .card {
+    background-color: #292c35;
+}
+
+body.dark .container.mt-4 h2 {
+    color: aliceblue !important;
+}
+
+body.dark div.balloon {
+    background-color: #292c35;
+}
+
+body.dark div.bg-light {
+    background-color: #292c35 !important;
+}
+
+body.dark h2.text-dark {
+    color: aliceblue !important;
+}
+
+body.dark h5 {
+    color: aliceblue !important;
+}
+
+/* Dark mode styling for table headers and body */
+body.dark .table {
+    background-color: #1c1e24 !important;
+    /* Dark background for table */
+    color: aliceblue !important;
+    /* Light text color for the table */
+}
+
+body.dark .table th {
+    background-color: #343a40 !important;
+    /* Dark background for the headers */
+    color: aliceblue !important;
+    /* Light text color for the headers */
+    border-color: #454d55 !important;
+    /* Border color for the headers */
+}
+
+body.dark .table td {
+    background-color: #292c35 !important;
+    /* Dark background for table data */
+    color: aliceblue !important;
+    /* Light text color for the data */
+}
+
+/* Ensure that the table's hover effect also uses dark mode */
+body.dark .table tbody tr:hover {
+    background-color: #3a3f47 !important;
+    /* Darker background on hover */
+    color: aliceblue !important;
+    /* Ensure text color stays light on hover */
+}
+
+/* Add styling for the card component in dark mode */
+body.dark .card {
+    background-color: #292c35 !important;
+    /* Dark background for cards */
+    color: aliceblue !important;
+    /* Light text color */
+    border-color: #444 !important;
+    /* Border color for cards */
+}
+
+body.dark .card-header {
+    background-color: #343a40 !important;
+    /* Dark background for card headers */
+    color: aliceblue !important;
+    /* Light text color for card headers */
+    border-color: #454d55 !important;
+    /* Border color for card headers */
+}
+
+/* Accordion item and header styles */
+body.dark .accordion-item {
+    background-color: #292c35 !important;
+    /* Dark background for the accordion item */
+    color: aliceblue !important;
+    /* Light text color for the accordion item */
+}
+
+body.dark .accordion-header {
+    background-color: #292c35 !important;
+    /* Dark background for the accordion header */
+    color: aliceblue !important;
+    /* Light text color for the header */
+}
+
+/* Accordion button in dark mode */
+body.dark .accordion-button {
+    background-color: #292c35 !important;
+    /* Dark background for the accordion button */
+    color: aliceblue !important;
+    /* Light text color for the button */
+    border: 1px solid #444 !important;
+    /* Border for the button */
+}
+
+/* Accordion button in collapsed state */
+body.dark .accordion-button.collapsed {
+    background-color: #343a40 !important;
+    /* Slightly lighter dark background for collapsed state */
+    color: aliceblue !important;
+    /* Light text color when collapsed */
+}
+
+/* Accordion button when expanded */
+body.dark .accordion-button:not(.collapsed) {
+    background-color: #343a40 !important;
+    /* Slightly lighter background for the expanded state */
+    color: aliceblue !important;
+    /* Light text color when expanded */
+}
+
+/* Accordion body styles */
+body.dark .accordion-body {
+    background-color: #1c1e24 !important;
+    /* Dark background for the body of the accordion */
+    color: aliceblue !important;
+    /* Light text color for the body */
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-label {
+    background-color: #111;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-moon {
+    color: #f1c40f;
+}
+
+.fa-sun {
+    color: #f39c12;
+}
+
+.checkbox-label .ball {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked+.checkbox-label .ball {
+    transform: translateX(24px);
 }

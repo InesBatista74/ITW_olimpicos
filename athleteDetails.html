@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="navbar.css">
     <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
     <link rel="stylesheet" href="athleteDetails.css">
+    <link rel="stylesheet" href="HomePage.css">
 </head>
 
 <body>
@@ -109,6 +110,16 @@
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
+
+        <!--dark mode button-->
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
     </nav>
 
 
@@ -203,6 +214,29 @@
     </nav>
 
     <!-- Scripts -->
+    <script>
+        const checkbox = document.getElementById("checkbox");
+
+        // Load the user's preference on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            const darkMode = localStorage.getItem("darkMode");
+            if (darkMode === "enabled") {
+                document.body.classList.add("dark");
+                checkbox.checked = true; // Keep the toggle in sync
+            }
+        });
+
+        // Toggle dark mode and save preference
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                document.body.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>

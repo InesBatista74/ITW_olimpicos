@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="shortcut icon" type="img/png" href="images/aneis-olimpicos.png" />
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="HomePage.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -106,6 +107,16 @@
                 <div class="nav-item "><a class="nav-link" aria-current="page" href="login.html"><i
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
+        </div>
+
+        <!--dark mode button-->
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
         </div>
     </nav>
     <div class="container my-xs-4m mt-4">
@@ -213,5 +224,28 @@
         // Chama a função para renderizar o gráfico ao carregar a página
         renderChart();
       </script>
+      <script>
+        const checkbox = document.getElementById("checkbox");
+
+        // Load the user's preference on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            const darkMode = localStorage.getItem("darkMode");
+            if (darkMode === "enabled") {
+                document.body.classList.add("dark");
+                checkbox.checked = true; // Keep the toggle in sync
+            }
+        });
+
+        // Toggle dark mode and save preference
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                document.body.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
     </body>
     </html>

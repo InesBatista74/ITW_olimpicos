@@ -5,9 +5,9 @@ Adições ao projeto após apresentação:
  - torneios da modalidade natação, canoagem de velocidade, futebol, basquetebol, ciclismo de pista e atletismo 
  - fotos default nos atletas, coaches e referees
  - lista das teams
+ - modo escuro
 
  Possíveis implemetações:
- - modo escuro
  - cards nos jogadores
  - favoritos para referres, coaches, ncos, ...
  - competition.details

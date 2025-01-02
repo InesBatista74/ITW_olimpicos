@@ -107,7 +107,20 @@
                      class="fa-solid fa-shop"></i>&nbsp</a></div>
             </div>
         </div>
+
+        <!--WORKING HEREEEEE-->
+        <!--dark mode button-->
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
     </nav>
+
+
     <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active"
@@ -117,7 +130,8 @@
       </div>
       <div class="carousel-inner">
           <div class="carousel-item active">
-              <div class="carousel-caption d-none d-md-block">
+            <!--has the no-dark tag to prevent funky things in dark mode-->
+              <div class="carousel-caption d-none d-md-block no-dark">
                   <div class="display-1 fw-bold welcome-text">Welcome to the Summer Olympics of 2024</div>
                   <p class="rounded bg-opacity-10 text-bg-dark here-you"  style="padding:10px">Here you can check all the athletes, modalities, countries, previous editions and future events!</p>
               </div>
@@ -158,6 +172,7 @@
         <p class="small-text">(Adapted from <a href="https://pt.wikipedia.org/wiki/Jogos_Ol%C3%ADmpicos_de_Ver%C3%A3o_de_2024">2024 Summer Olympic Gmes - Wikipédia</a>)</p>
         <hr>
     </div>
+    
     <nav class="navbar navbar-light bg-light" id="footer">
         <div class="container small d-flex justify-content-between align-items-center">
             <!-- Texto e ícone GitHub juntos -->
@@ -177,5 +192,28 @@
         </div>
     </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const checkbox = document.getElementById("checkbox");
+
+            // Load the user's preference on page load
+            document.addEventListener("DOMContentLoaded", () => {
+                const darkMode = localStorage.getItem("darkMode");
+                if (darkMode === "enabled") {
+                    document.body.classList.add("dark");
+                    checkbox.checked = true; // Keep the toggle in sync
+                }
+            });
+
+            // Toggle dark mode and save preference
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    document.body.classList.add("dark");
+                    localStorage.setItem("darkMode", "enabled");
+                } else {
+                    document.body.classList.remove("dark");
+                    localStorage.setItem("darkMode", "disabled");
+                }
+            });
+    </script>
 </body>
 </html>
