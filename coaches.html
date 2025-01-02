@@ -181,7 +181,7 @@
                     <td class="align-middle" data-bind="text: Function ? Function : ''"></td>
                     <td class="align-middle" data-bind="text: Sex ? Sex : ''"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./coachesDetails.html?id=' + Id }"><i class="fa-solid fa-person" title="Show details"></i></a>
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./coachDetails.html?id=' + Id }"><i class="fa-solid fa-person" title="Show details"></i></a>
                         <button class="btn btn-default btn-outline-danger btn-xs btn-favourite" 
                         data-bind="click: () => $parent.toggleFavourite(Id), attr: { 'id': 'favourite_' + Id }">
                         <i data-bind="css: $parent.favourites().some(fav => fav.coach === Id) ? 'fa-solid fa-heart text-danger' : 'fa-regular fa-heart'" 
