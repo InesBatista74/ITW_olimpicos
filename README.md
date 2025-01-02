@@ -8,6 +8,3 @@ Adições ao projeto após apresentação:
  - modo escuro
  - favoritos nos coaches e teams 
 
- Possíveis implemetações:
- - cards nos jogadores
- - competition.details
