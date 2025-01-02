@@ -6,6 +6,7 @@ Adições ao projeto após apresentação:
  - fotos default nos atletas, coaches e referees
  - lista das teams
  - modo escuro
+ - favoritos nos coaches e teams 
 
  Possíveis implemetações:
  - cards nos jogadores
