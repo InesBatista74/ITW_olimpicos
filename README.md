@@ -9,5 +9,4 @@ Adições ao projeto após apresentação:
 
  Possíveis implemetações:
  - cards nos jogadores
- - favoritos para referres, coaches, ncos, ...
  - competition.details

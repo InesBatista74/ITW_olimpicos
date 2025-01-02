@@ -1,7 +1,7 @@
 ﻿// ViewModel KnockOut
 var vm = function () {
-    console.log('ViewModel has been initiated.');
-    // local vars (set as ko observables)
+    console.log('ViewModel initiated...');
+    //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Paris2024/API/athletes');
     self.displayName = 'Paris2024 Athletes List';
@@ -13,7 +13,6 @@ var vm = function () {
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -42,74 +41,111 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
-
-    self.favorites = ko.observableArray(JSON.parse(localStorage.getItem('favorites')) || []);
-    self.filterOption = ko.observable('all');
-
-    self.filteredAthletes = ko.computed(function () {
-        if (self.filterOption() === 'favorites') {
-            return self.athletes().filter(function (athlete) {
-                return self.isFavorite(athlete);
-            });
-        }
-        return self.athletes();
-    });
-    self.isFavorite = function (athlete) {
-        return self.favorites().some(function (fav) {
-            return fav.Id === athlete.Id;
-        });
-    };
-    self.toggleFavorite = function (athlete) {
-        var favorites = self.favorites();
-        var athleteIndex = favorites.findIndex(function (fav) {
-            return fav.Id === athlete.Id;
-        });
+    self.toggleFavourite = function (id) {
+        // Verifica se o array já contém um objeto com chave `team` e valor `id`
+        const existingIndex = self.favourites().findIndex(item => item.Athletes === id);
     
-        if (athleteIndex === -1) {
-            favorites.push(athlete);
+        if (existingIndex === -1) {
+            // Se não existe, adiciona um novo objeto com chave `team` e o ID
+            self.favourites.push({ Athletes: id });
         } else {
-            favorites.splice(athleteIndex, 1);
+            // Se já existe, remove o objeto do array
+            self.favourites.splice(existingIndex, 1);
         }
     
-        self.favorites(favorites);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
+        // Atualiza o localStorage com o array modificado
+        localStorage.setItem("fav", JSON.stringify(self.favourites()));
+    };
     
-        // Adicionar o atleta à página de favoritos
-        updateFavouritesTable();
+    self.SetFavourites = function () {
+        let storage;
+        try {
+            // Tenta carregar os favoritos armazenados no localStorage
+            storage = JSON.parse(localStorage.getItem("fav"));
+        } catch (e) {
+            console.error("Erro ao carregar favoritos:", e);
+        }
     
-        // Se quiser redirecionar para a página de favoritos após a ação
-        // window.location.href = 'athletesFAV.html';
+        // Se o dado armazenado for um array, inicializa o observable com ele
+        if (Array.isArray(storage)) {
+            self.favourites(storage);
+        }
+    };
+    
+    // Inicializa o observable como um array vazio
+    self.favourites = ko.observableArray([]);
+
+
+    self.search = function () {
+        console.log("searching...");
+        var searchQuery = document.getElementById('searchbar').value.toLowerCase();
+        if (!searchQuery) {
+            self.activate(1);
+            return;
+        }
+    
+        var searchUrl = self.baseUri() + "/Search?q=" + searchQuery;
+        ajaxHelper(searchUrl, 'GET').done(function (data) {
+            if (data.length === 0) {
+                alert('No results found');
+                return;
+            }
+    
+            // Alteração: Certifique-se de que cada objeto tenha as propriedades necessárias
+            var enrichedData = data.filter(function (athlete) {
+                return athlete.Name.toLowerCase().includes(searchQuery); // Alterado para "includes"
+            }).map(function (athlete) {
+                return {
+                    Id: athlete.Id,
+                    Name: athlete.Name,
+                    BirthDate: athlete.BirthDate || "",
+                    BirthPlace: athlete.BirthPlace || "",
+                    Sex: athlete.Sex || ""
+                };
+            });
+    
+            self.athletes(enrichedData);
+            self.totalRecords(enrichedData.length);
+            self.currentPage(1);
+        });
     };
 
+    self.onEnter = function (event) {
+        if (event.keyCode === 13) {
+            self.search();
+        }
+        return true;
+    };
 
-
-
-    function updateFavouritesTable() {
-        var favourites = JSON.parse(localStorage.getItem('favorites')) || [];
-        var tableBody = $('#table-favourites');
-        tableBody.empty(); // Limpar tabela
-    
-        favourites.forEach(function(athlete) {
-            var row = `<tr>
-                <td>${athlete.Id}</td>
-                <td>${athlete.Name}</td>
-                <td>${athlete.Sex}</td>
-                <td><img src="${athlete.PhotoUrl || 'default.jpg'}" alt="${athlete.Name}" style="width: 50px; height: auto;"></td>
-                <td><a href="./athleteDetails.html?id=${athlete.Id}" class="btn btn-light btn-xs"><i class="fa-solid fa-person" title="Show details"></i></a></td>
-            </tr>`;
-            tableBody.append(row);
+    // Autocomplete configurado
+    $.ui.autocomplete.filter = function (array, term) {
+        var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+        return $.grep(array, function (value) {
+            return matcher.test(value.label || value.value || value);
         });
-    }
+    };
+
+    $("#searchbar").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: self.baseUri() + "/Search?q=" + request.term,
+                dataType: "json",
+                success: function (data) {
+                    var athleteNames = data.map(function (athlete) {
+                        return athlete.Name;
+                    });
+
+                    // Alteração: Use "includes" para verificar se o termo está contido em qualquer parte do nome
+                    response($.grep(athleteNames, function (name) {
+                        return name.toLowerCase().includes(request.term.toLowerCase());
+                    }));
+                }
+            });
+        },
+        minLength: 3
+    });
     
-    
-
-
-
-
-
-    
-
-    // page events
+    //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
@@ -123,12 +159,13 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalAhletes);
+            self.SetFavourites();
         });
     };
 
-    // internal funcs
+    //--- Internal functions
     function ajaxHelper(uri, method, data) {
-        self.error(''); // clears the error msg
+        self.error(''); // Clear error message
         return $.ajax({
             type: method,
             url: uri,
@@ -145,8 +182,6 @@ var vm = function () {
 
     function sleep(milliseconds) {
         const start = Date.now();
-        // the while loop (empty) will run for the desired duration
-        // essentially fullfilling the role of a sleep function 
         while (Date.now() - start < milliseconds);
     }
 
@@ -177,7 +212,7 @@ var vm = function () {
         }
     };
 
-    // start
+    //--- start ....
     showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);

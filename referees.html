@@ -124,12 +124,20 @@
 
 
     <div class="container">
-        <div class="border-bottom py-2 mb-2 d-flex align-items-center justify-content-between">
-            <h2 data-bind="text:displayName" class="mb-0"></h2>
-            <!-- sends to the search page -->
-            <a href="refereesSearch.html" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
+        <div class="pt-4 mb-3">
+            <div class="row d-flex align-items-center">
+                <!-- Título "Lista de Atletas" à esquerda -->
+                <div class="border-bottom py-2 mb-2 d-flex align-items-center justify-content-between">
+                    <h2 class="d-flex align-items-center">
+                        <i class="fa-solid fa-user" style="color: blue"></i>
+                        <span class="ms-2" style="margin-left: 5px;">Referees - Paris 2024</span>
+                    </h2>
+                    <!-- sends to the search page -->
+                    <a href="refereesSearch.html" class="btn btn-primary btn-md">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- ko if:technical_officials().length > 0 -->
@@ -168,7 +176,7 @@
         </div>
         <!-- /ko -->
 
-        <table class="table table-striped table-sm small">
+        <table class="table table-striped table-sm small" style="margin-bottom: 15px;">
             <thead class="table-secondary">
                 <tr>
                     <th scope="col">ID</th>
@@ -188,9 +196,6 @@
                         <a class="btn btn-default btn-light btn-xs"
                             data-bind="attr: { href:'./refereesDetails.html?id=' + Id }"><i class="fa-solid fa-person"
                                 title="Show details"></i>
-                        </a>
-                        <a class="btn btn-light btn-xs">
-                            <i class="fa fa-heart" title="Add to favorites"></i>
                         </a>
                     </td>
                 </tr>
